@@ -1,0 +1,102 @@
+#check to make sure required packages are installed
+list.of.packages <- c("plyr", "dplyr", "reshape2", "ggplot2", "grid", "gridExtra", "sensitivity", "abind", 
+                      "ppcor")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)>0) {install.packages(new.packages)}
+
+#load library dependencies
+library(plyr)
+library(reshape2)
+library(ggplot2)
+library(grid)
+library(gridExtra)
+library(sensitivity)
+library(abind)
+
+#echo environment
+Sys.info()
+Sys.info()[4]
+.Platform
+version
+
+
+#set some default directories based on machine location
+#Tom's mac air
+if(Sys.info()[4]=="stp-air"){
+  pwcdir <- "~/git/sinnathamby_pwc/"
+}
+#Tom's epa window
+if(Sys.info()[4]=="DZ2626UTPURUCKE"){
+  pwcdir <- "k:/git/sinnathamby_pwc/"
+  # varroapop file (without directory, the file needs to be in vpdir_exe above)
+  pwc_filename <- "RLF_Forest_Chloropyrifos.PWC"
+}
+#Sumathy's window
+if(Sys.info()[4]=="DZ2626USSINNATH"){
+  pwcdir <- "c:/git/sinnathamby_pwc/"
+  # varroapop file (without directory, the file needs to be in vpdir_exe above)
+  pwc_filename <- "RLF_Forest_Chloropyrifos.PWC"
+}
+print(paste("Root directory location: ", pwcdir, sep=""))
+
+
+#subdirectories
+pwcdir_input <- paste(pwcdir, "input/", sep = "")
+pwcdir_output <- paste(pwcdir, "output/", sep = "")
+pwcdir_log <- paste(pwcdir, "log/", sep = "")
+pwcdir_fig <- paste(pwcdir, "figures/", sep = "")
+pwcdir_exe <- paste(pwcdir, "exe/", sep = "")
+pwcdir_io <- paste(pwcdir, "io/", sep = "")
+pwcdir_in_przm <- paste(pwcdir_input, "przm/", sep = "")
+pwcdir_in_vvwm <- paste(pwcdir_input, "vvwm/", sep = "")
+pwcdir_out_przm <- paste(pwcdir_output, "przm/", sep = "")
+pwcdir_out_vvwm <- paste(pwcdir_output, "vvwm/", sep = "")
+pwcdir_weather <- paste(pwcdir, "weather/", sep = "")
+pwcdir_sobol <- paste(pwcdir, "sobol/", sep = "")
+
+
+#pwc executable version
+#pwc 1.59
+pwc_binary<- "pwc159.exe"
+pwcdir_executable <- paste(pwcdir_exe, pwc_binary, sep="")
+
+#number of simulations 
+Nsims <- 50
+
+#weather file
+#can be .dvf or .wea
+pwc_weather_used <- "17955_grid.wea"
+pwc_weather <- paste(pwcdir_weather, pwc_weather_used, sep="")
+
+#simulation start and end
+#must have mm/dd/yyyy format
+simstart <- "01/01/1988"
+simend <- "12/31/2000"
+
+#run everything
+# define distributions for input parameters
+source(paste(pwcdir,"src/01parameterize_simulation.R",sep = ""))
+
+#echo the first log file
+scan(file = paste(pwcdir_log, "log1.txt", sep=""), what = "raw")
+
+# create and save input text files for simulations
+source(paste(pwcdir,"src/02write_input.R",sep = ""))
+
+#may need to turn off virus checker!
+# automate simulations for 'Nsims' number of simulations
+source(paste(pwcdir,"src/03simulate_w_exe.R",sep = ""))
+
+# read text files and save results in 3d arrays
+source(paste(pwcdir,"src/04read_output.R",sep = ""))
+
+# load input and output objects into environment
+source(paste(pwcdir,"src/05load_io.R",sep = ""))
+
+
+# run sensitivity analysis on tdarrays
+source(paste(pwcdir,"src/06adaily_sensitivity_analyses_linear.R",sep = ""))
+
+# plot results
+source(paste(pwcdir,"src/06bdaily_sensitivity_analyses_graphics.R",sep = ""))
+
