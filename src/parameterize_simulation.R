@@ -5,7 +5,8 @@ sim_end<- rep(paste(simend, sep = ""), Nsims)
 inputdf<- data.frame(weather_file, sim_start, sim_end)
 
 ##initial parameter distributions
-depositionrate<- runif(Nsims, 0.1, 58); inputdf <- cbind(inputdf, depositionrate) #Depositionrate
+
+depositionrate<- runif(Nsims, 1, 100); inputdf <- cbind(inputdf, depositionrate) #depositionrate
 efficiency<-runif(Nsims, 0.1, 1); inputdf <- cbind(inputdf, efficiency) #Efficiency
 drfitfraction<-runif(Nsims, 0.1, 1); inputdf <- cbind(inputdf, drfitfraction) #Drfitfraction
 

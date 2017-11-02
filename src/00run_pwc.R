@@ -61,7 +61,7 @@ pwc_binary<- "pwc159.exe"
 pwcdir_executable <- paste(pwcdir_exe, pwc_binary, sep="")
 
 #number of simulations 
-Nsims <- 50
+Nsims <- 10
 
 #weather file
 #can be .dvf or .wea
