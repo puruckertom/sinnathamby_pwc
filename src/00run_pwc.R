@@ -12,7 +12,7 @@ library(grid)
 library(gridExtra)
 library(sensitivity)
 library(abind)
-
+library(tools)
 #echo environment
 Sys.info()
 Sys.info()[4]
@@ -28,14 +28,16 @@ if(Sys.info()[4]=="stp-air"){
 #Tom's epa window
 if(Sys.info()[4]=="DZ2626UTPURUCKE"){
   pwcdir <- "k:/git/sinnathamby_pwc/"
-  # varroapop file (without directory, the file needs to be in vpdir_exe above)
+  # pwc,przm (without directory, the file needs to be in vpdir_exe above)
   pwc_filename <- "RLF_Forest_Chloropyrifos.PWC"
+  przm_filename <- "PRZM5.inp"
 }
 #Sumathy's window
 if(Sys.info()[4]=="DZ2626USSINNATH"){
   pwcdir <- "c:/git/sinnathamby_pwc/"
-  # varroapop file (without directory, the file needs to be in vpdir_exe above)
+  # pwc,przm file (without directory, the file needs to be in vpdir_exe above)
   pwc_filename <- "RLF_Forest_Chloropyrifos.PWC"
+  przm_filename <- "PRZM5.inp"
 }
 print(paste("Root directory location: ", pwcdir, sep=""))
 
@@ -46,6 +48,8 @@ pwcdir_output <- paste(pwcdir, "output/", sep = "")
 pwcdir_log <- paste(pwcdir, "log/", sep = "")
 pwcdir_fig <- paste(pwcdir, "figures/", sep = "")
 pwcdir_exe <- paste(pwcdir, "exe/", sep = "")
+przmdir_exe <- paste(pwcdir, "exe/", sep = "")
+vvwmdir_exe <- paste(pwcdir, "exe/", sep = "")
 pwcdir_io <- paste(pwcdir, "io/", sep = "")
 pwcdir_in_przm <- paste(pwcdir_input, "przm/", sep = "")
 pwcdir_in_vvwm <- paste(pwcdir_input, "vvwm/", sep = "")
@@ -59,7 +63,10 @@ pwcdir_sobol <- paste(pwcdir, "sobol/", sep = "")
 #pwc 1.59
 pwc_binary<- "pwc159.exe"
 pwcdir_executable <- paste(pwcdir_exe, pwc_binary, sep="")
-
+przm_binary<- "PRZM5.exe"
+przmdir_executable <- paste(przmdir_exe, przm_binary, sep="")
+vvwm_binary<- "VVWM.exe"
+vvwmdir_executable <- paste(vvwmdir_exe, vvwm_binary, sep="")
 #number of simulations 
 Nsims <- 10
 
@@ -74,18 +81,11 @@ simstart <- "01/01/1988"
 simend <- "12/31/2000"
 
 #run everything
-# define distributions for input parameters
-source(paste(pwcdir,"src/01parameterize_simulation.R",sep = ""))
+# write_update_run_przm
+#write_update_run_vvwm
+source(paste(pwcdir,"src/01write_update_run_przm.R",sep = ""))
 
-#echo the first log file
-scan(file = paste(pwcdir_log, "log1.txt", sep=""), what = "raw")
 
-# create and save input text files for simulations
-source(paste(pwcdir,"src/02write_input.R",sep = ""))
-
-#may need to turn off virus checker!
-# automate simulations for 'Nsims' number of simulations
-source(paste(pwcdir,"src/03simulate_w_exe.R",sep = ""))
 
 # read text files and save results in 3d arrays
 source(paste(pwcdir,"src/04read_output.R",sep = ""))
