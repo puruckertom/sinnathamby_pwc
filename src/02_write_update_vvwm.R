@@ -85,6 +85,41 @@ l[81]="C:\\Users\\ssinnath\\models\\pwc 1.59\\almond_CAalmond_WirrigSTD_Custom_1
 l[82]="C:\\Users\\ssinnath\\models\\pwc 1.59\\almond_CAalmond_WirrigSTD_Custom_15_Degradate1.txt"#
 l[83]="C:\\Users\\ssinnath\\models\\pwc 1.59\\almond_CAalmond_WirrigSTD_Custom_15_Degradate2.txt"#
 
+################
+benthic_depth=round(runif(Nsims, min=0, max=1),2)
+l[41]=paste(benthic_depth[Ite])
+##########################
+porosity=round(runif(Nsims, min=0, max=1),2)
+l[42]=paste(porosity[Ite])
+###########################################################################
+bulk_density=round(runif(Nsims, min=0, max=1),2)
+l[43]=paste(bulk_density[Ite])
+###########################################################################
+FROC2=round(runif(Nsims, min=0, max=1),2)
+l[44]=paste(FROC2[Ite])
+###########################################################################
+DOC2=round(runif(Nsims, min=0, max=15),2)#Concentration of dissolved organic carbon in benthic region (mg/L)
+l[45]=paste(DOC2[Ite])
+###########################################################################
+BNMAS=round(runif(Nsims, min=0.001, max=0.010),3)#Areal concentration of biosolids in benthic region (g/m2)
+l[46]=paste(BNMAS[Ite])
+###########################################################################
+SUSED=round(runif(Nsims, min=0, max=150),2)#Suspended solids concentration in water column (mg/L)
+l[48]=paste(SUSED[Ite])
+###########################################################################
+CHL=round(runif(Nsims, min=0.001, max=0.010),3)#Chlorophyll concentration in water column (mg/L)
+l[49]=paste(CHL[Ite])
+###########################################################################
+FROC1=round(runif(Nsims, min=0.0, max=1.0),2)#Fraction of organic carbon on suspended sediment in water column.
+l[50]=paste(FROC1[Ite])
+###########################################################################
+DOC1=round(runif(Nsims, min=0.0, max=50.0),2)#Concentration of dissolved organic carbon in water column (mg/L)
+l[51]=paste(DOC1[Ite])
+###########################################################################
+PLMAS=round(runif(Nsims, min=0.0, max=5.0),2)#Concentration of biosolids in water column (mg/L)
+l[52]=paste(PLMAS[Ite])
+###########################################################################
+
 l[1]=paste(file_path_as_absolute(newdir),"/","output", sep="")
 l[30]=paste(file_path_as_absolute(newdir),"/",pwc_weather_used, sep="")
 l[69]=paste("\"",file_path_as_absolute(newdir),"/","output_CAalmond_WirrigSTD_Custom_Parent_daily.csv","\"", sep="")#
