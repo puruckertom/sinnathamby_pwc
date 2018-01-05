@@ -4,8 +4,9 @@ list.of.packages <- c("plyr", "dplyr", "reshape2", "ggplot2", "grid", "gridExtra
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)>0) {install.packages(new.packages)}
 
-#load library dependencies
+#install and load library dependencies
 #install.packages("magrittr")
+#install.packages("sensitivity")
 library(magrittr)
 library(plyr)
 library(reshape2)
@@ -86,7 +87,7 @@ simend <- "12/31/2000"
 #run everything
 # write_update_run_przm
 #write_update_run_vvwm
-source(paste(pwcdir,"src/01write_update_run_przm.R",sep = ""))
+source(paste(pwcdir,"src/01write_update_run_pwc.R",sep = ""))
 
 #create input dataframe
 source(paste(pwcdir,"src/03write_input_dataframe.R",sep = ""))
@@ -96,9 +97,8 @@ source(paste(pwcdir,"src/04_write_ouput_into_df.R",sep = ""))
 # load input and output objects into environment
 source(paste(pwcdir,"src/05load_io.R",sep = ""))
 
-
-# run sensitivity analysis on tdarrays
-source(paste(pwcdir,"src/06adaily_sensitivity_analyses_linear.R",sep = ""))
+# run sensitivity analysis on time daily arrays
+source(paste(pwcdir,"src/06daily_sensitivity_analysis_linear.R",sep = ""))
 
 # plot results
 source(paste(pwcdir,"src/06bdaily_sensitivity_analyses_graphics.R",sep = ""))

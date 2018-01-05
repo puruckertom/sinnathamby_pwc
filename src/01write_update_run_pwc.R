@@ -1,4 +1,21 @@
+#Create empty dataframe for outputs
+##############PRZM###########################################
+df <- read.table(paste(pwcdir,"output/output",".zts", sep=""), header= FALSE, sep= "",
+                 skip = 3, stringsAsFactors = FALSE, row.names=NULL)
+dim(df)
+str(df)
+nrows <- dim(df)[[1]] 
+ncols <- dim(df)[[2]]
 
+outputdf <- array(data=NA, c(nrows,ncols,Nsims))
+#############PWC#########################################
+pwcdf <- read.csv(paste(pwcdir,"output/output_CAalmond_WirrigSTD_Custom_Parent_daily.csv", sep=""), header= FALSE, sep= ",",
+                  skip = 5, stringsAsFactors = FALSE, row.names=NULL)
+dim(pwcdf)
+str(pwcdf)
+nrows <- dim(pwcdf)[[1]]
+ncols <- dim(pwcdf)[[2]]
+pwcoutdf <- array(data=NA, c(nrows,ncols,Nsims))
 ###############update input file################
 for (Ite in 1:Nsims){
   print(Ite)
@@ -340,62 +357,62 @@ for (Ite in 1:Nsims){
   # a[333]="11,6,2014,2,4,4.213093,0.1926759,0, 1, 4.0, 0, 0, 0, 1, 4.0, 0, 0, 0"
   # a[334]="21,6,2014,2,4,8.841594,0.5898139,0, 1, 4.0, 0, 0, 0, 1, 4.0, 0, 0, 0"
   # a[335]="1,7,2014,2,4,3.808331,0.3502494,0, 1, 4.0, 0, 0, 0, 1, 4.0, 0, 0, 0"
-  a[336]="***Record C3: FILTRA,IPSCND,UPTKF,1IPSCND,1UPTKF,2IPSCND,2UPTKF"
-  a[337]="0,1,0,1,0,1,0"
-  a[338]="***Record C4 (Chem #1)"
-  a[339]="0, 0.019804, 0.5"
-  a[340]="***Record C6: volatilization"
-  a[341]="0,0.000252,23.42256,"
-  a[342]="*** Record C7: Kf1, Kf2, Kf3 for each horizon"
-  a[343]="26.274,"
-  a[344]="8.757999,"
-  a[345]="8.757999,"
-  a[346]="10.1472,"
-  a[347]="8.757999,"
-  a[348]="*** Record C7A: N1, N2, N3 Freundlich Exponents for each horizon"
-  a[349]="1.0,"
-  a[350]="1.0,"
-  a[351]="1.0,"
-  a[352]="1.0,"
-  a[353]="1.0,"
-  a[354]="*** Record C7B: Region 2 Freundlich Coefficient for each horizon"
-  a[355]="1,"
-  a[356]="1,"
-  a[357]="1,"
-  a[358]="1,"
-  a[359]="1,"
-  a[360]="*** Record C7C: Region 2 Freundlich Exponents for each horizon"
-  a[361]="1,"
-  a[362]="1,"
-  a[363]="1,"
-  a[364]="1,"
-  a[365]="1,"
-  a[366]="*** Record C7D: Lowest Concentration (mg/L) for Freundlich Exponent"
-  a[367]="1.0e-12,"
-  a[368]="*** Record C7E: Sorbed-Phase-Referenced Mass-Transfer Coefficient"
-  a[369]="1,"
-  a[370]="*** Record C8: Degradation Rates Aqueous, Sorbed, Gas"
-  a[371]="0.004062954,0.004062954,0,"
-  a[372]="0.004062954,0.004062954,0,"
-  a[373]="0.004062954,0.004062954,0,"
-  a[374]="0.004062954,0.004062954,0,"
-  a[375]="0.004062954,0.004062954,0,"
-  a[376]="*** Record C9: Molar Conversions 1 to 2, 1 to 3, 2 to 3"
-  a[377]="0,0,0,0,0,0"
-  a[378]="0,0,0,0,0,0"
-  a[379]="0,0,0,0,0,0"
-  a[380]="0,0,0,0,0,0"
-  a[381]="0,0,0,0,0,0"
-  a[382]="********** OUTPUT SPECIFICATIONS ***********************"
-  a[383]="*** Record U1"
-  a[384]="6"
-  a[385]="*** Record U2"
-  a[386]="RUNF,0,TSER,   0,   0,    1.0"
-  a[387]="ESLS,0,TSER,   0,   0,    1.0"
-  a[388]="RFLX,1,TSER,   0,   0,    1"
-  a[389]="EFLX,1,TSER,   0,   0,    1"
-  a[390]="DCON,1,TAVE,   168,  287,    1000"
-  a[391]="INFL,0,TCUM,   290,   290,    1.0"
+  # a[336]="***Record C3: FILTRA,IPSCND,UPTKF,1IPSCND,1UPTKF,2IPSCND,2UPTKF"
+  # a[337]="0,1,0,1,0,1,0"
+  # a[338]="***Record C4 (Chem #1)"
+  # a[339]="0, 0.019804, 0.5"
+  # a[340]="***Record C6: volatilization"
+  # a[341]="0,0.000252,23.42256,"
+  # a[342]="*** Record C7: Kf1, Kf2, Kf3 for each horizon"
+  # a[343]="26.274,"
+  # a[344]="8.757999,"
+  # a[345]="8.757999,"
+  # a[346]="10.1472,"
+  # a[347]="8.757999,"
+  # a[348]="*** Record C7A: N1, N2, N3 Freundlich Exponents for each horizon"
+  # a[349]="1.0,"
+  # a[350]="1.0,"
+  # a[351]="1.0,"
+  # a[352]="1.0,"
+  # a[353]="1.0,"
+  # a[354]="*** Record C7B: Region 2 Freundlich Coefficient for each horizon"
+  # a[355]="1,"
+  # a[356]="1,"
+  # a[357]="1,"
+  # a[358]="1,"
+  # a[359]="1,"
+  # a[360]="*** Record C7C: Region 2 Freundlich Exponents for each horizon"
+  # a[361]="1,"
+  # a[362]="1,"
+  # a[363]="1,"
+  # a[364]="1,"
+  # a[365]="1,"
+  # a[366]="*** Record C7D: Lowest Concentration (mg/L) for Freundlich Exponent"
+  # a[367]="1.0e-12,"
+  # a[368]="*** Record C7E: Sorbed-Phase-Referenced Mass-Transfer Coefficient"
+  # a[369]="1,"
+  # a[370]="*** Record C8: Degradation Rates Aqueous, Sorbed, Gas"
+  # a[371]="0.004062954,0.004062954,0,"
+  # a[372]="0.004062954,0.004062954,0,"
+  # a[373]="0.004062954,0.004062954,0,"
+  # a[374]="0.004062954,0.004062954,0,"
+  # a[375]="0.004062954,0.004062954,0,"
+  # a[376]="*** Record C9: Molar Conversions 1 to 2, 1 to 3, 2 to 3"
+  # a[377]="0,0,0,0,0,0"
+  # a[378]="0,0,0,0,0,0"
+  # a[379]="0,0,0,0,0,0"
+  # a[380]="0,0,0,0,0,0"
+  # a[381]="0,0,0,0,0,0"
+  # a[382]="********** OUTPUT SPECIFICATIONS ***********************"
+  # a[383]="*** Record U1"
+  # a[384]="6"
+  # a[385]="*** Record U2"
+  # a[386]="RUNF,0,TSER,   0,   0,    1.0"
+  # a[387]="ESLS,0,TSER,   0,   0,    1.0"
+  # a[388]="RFLX,1,TSER,   0,   0,    1"
+  # a[389]="EFLX,1,TSER,   0,   0,    1"
+  # a[390]="DCON,1,TAVE,   168,  287,    1000"
+  # a[391]="INFL,0,TCUM,   290,   290,    1.0"
   ############################################################################################################
   ######Pan factor##############
   PFAC=runif(Nsims, min=0.60, max=0.80);
@@ -435,7 +452,7 @@ for (Ite in 1:Nsims){
   
 
   Num=24#Number of Applications
-  CNPer=round(runif(Nsims, min=0.85, max=1.15),2)
+  CNPer=round(runif(Nsims, min=0.95, max=1.05),2)
   row_0=18
   for (i in 1:Num){
     row_t=row_0+(i-1)
@@ -443,7 +460,7 @@ for (Ite in 1:Nsims){
     #cn_list[6]<-(as.numeric(CNPer[Ite]))*(as.numeric(cn_list[6]))
     cn_list[6]<-round((CNPer[Ite]*(as.numeric(cn_list[6]))),1)
     a[row_t]=paste(cn_list,collapse=",")
-    
+
   }
   #####################root depth###############################################################################
   Numd=54#Number of crop periods that follow
@@ -542,7 +559,22 @@ for (Ite in 1:Nsims){
   # #run###vvwm.exe#
   system2(vvwmdir_executable, "vvwmTransfer.txt")
   ###########################################################
-  source(paste(pwcdir,"src/04_write_output_into_df.R",sep = ""))
+  ###############PRZM#############################################################
+  df <- read.table(paste(newdir,"/","output",".zts", sep=""), header= FALSE, sep= "",
+                   skip = 3, stringsAsFactors = FALSE, row.names=NULL)
+ 
+  newdf <- df[,3:ncols]
+  outputdf[1:nrows,1:ncols,Ite] <- abind(df[1:nrows,1:ncols], along=3)
+  ########################PWC outpput################################################################
+  pwcdf <- read.csv(paste(newdir,"/","output_CAalmond_WirrigSTD_Custom_Parent_daily",".csv", sep=""), header= FALSE, sep= ",",
+                    skip = 5, stringsAsFactors = FALSE, row.names=NULL)
+  
+
+  pwcoutdf[1:nrows,1:ncols,Ite] <- abind(pwcdf[1:nrows,1:ncols], along=3)
+  
+  # newarray <- pwcdf[,2:ncols]
+  # pwcoutdf[1:nrows,1:(ncols-1),Ite] <- abind(newarray[1:nrows,1:(ncols-1)], along=3)
+  ###########################################################################################
   setwd(cwd)
   close(fileConn)
 }

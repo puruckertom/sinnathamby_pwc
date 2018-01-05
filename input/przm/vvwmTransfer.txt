@@ -1,21 +1,21 @@
-C:\git\sinnathamby_pwc\input\przm\input1\output
-
+C:\Users\ssinnath\models\pwc 1.59\almond
+Chlorpyrifos
 1
 True
-216500,,,
-323.6,,,
-20,,,
-647.2,,,
-20,,,
-255,,,
+6040,,,
+91.2,,,
+25,,,
+202.7,,,
+25,,,
+29.6,,,
 40,,,
-2007,,,
-161.8,,,
-20,
-12.7,,,
-422.9,,,
-1.80E-03,,,
-0.000014,,,
+0,,,
+170.6,,,
+25,
+35,,,
+350.57,,,
+1.87E-05,,,
+1.4,,,
 0,0,
 0,0,
 0,0,
@@ -23,11 +23,11 @@ True
 0,0,
 0,0,
 0.0,,,
-7.20E-03,,,
-0.0,,,
+0.000252,,,
+98000,,,
 2
 CAalmond_WirrigSTD
-c:/git/sinnathamby_pwc/input/przm/input1/17955_grid.wea
+E:\Research\NewWeatherFiles\16306_grid.wea
 40
 True,True,True,False,False,False,False
 False,30,1,
@@ -53,31 +53,31 @@ False,0.5
 False
 1.0,1.0
 
-54
-19654,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,
+216
+19375,19390,19400,19584,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,
 1
 894356
 1745.45
 4.0
 4.5
-0.002757811,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0.007819616,0.02345885,0.007819616,0.007819616,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0
 0.0
 1
 False
 False,15
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Parent_daily.csv"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Degradate1_daily.csv"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Degradate2_daily.csv"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Parent.txt"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Degradate1.txt"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Degradate2.txt"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Parent_DEEM.rdf"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Degradate1_DEEM.rdf"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Degradate2_DEEM.rdf"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Parent_Calendex.rdf"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Degradate1_Calendex.rdf"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_Degradate2_Calendex.rdf"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_15_Parent.txt"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_15_Degradate1.txt"
-"C:\git\sinnathamby_pwc\input\przm\input1\almond_CAalmond_WirrigSTD_Custom_15_Degradate2.txt"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Parent_daily.csv"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate1_daily.csv"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate2_daily.csv"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Parent.txt"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate1.txt"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate2.txt"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Parent_DEEM.rdf"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate1_DEEM.rdf"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate2_DEEM.rdf"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Parent_Calendex.rdf"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate1_Calendex.rdf"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate2_Calendex.rdf"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_15_Parent.txt"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_15_Degradate1.txt"
+"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_15_Degradate2.txt"
