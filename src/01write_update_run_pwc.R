@@ -16,6 +16,9 @@ str(pwcdf)
 nrows <- dim(pwcdf)[[1]]
 ncols <- dim(pwcdf)[[2]]
 pwcoutdf <- array(data=NA, c(nrows,ncols,Nsims))
+######################################################
+con_fac <- data.frame(matrix(ncol = 1, nrow = Nsims))
+dim(con_fac)
 ###############update input file################
 for (Ite in 1:Nsims){
   print(Ite)
@@ -523,6 +526,7 @@ for (Ite in 1:Nsims){
   }
   ###########################################################################################################
   newdir <- paste0("c:/git/sinnathamby_pwc/input/przm/input",Ite)
+  print(newdir)
   dir.create(newdir,showWarnings = FALSE) 
   cwd <- getwd()          # CURRENT dir
   setwd(newdir) 
@@ -575,11 +579,23 @@ for (Ite in 1:Nsims){
   # newarray <- pwcdf[,2:ncols]
   # pwcoutdf[1:nrows,1:(ncols-1),Ite] <- abind(newarray[1:nrows,1:(ncols-1)], along=3)
   ###########################################################################################
+ #reading conversion factor from output################
+  #con_fac <- scan((paste(newdir,"/","output_CAalmond_WirrigSTD_Custom_Parent",".txt", sep="")),skip=15,nlines=1,what="int")
+  
+  con <- file(paste(newdir,"/","output_CAalmond_WirrigSTD_Custom_Parent",".txt", sep=""))
+  #print(con)
+  open(con)
+  con_fac_line<-read.table(con,skip=15,nrow=1) #16-th line
+  con_fac[Ite,]<-as.numeric(con_fac_line%>%select_if(is.numeric))
+  print(con_fac)
+  close(con)
+  ##############################################################################################
   setwd(cwd)
   close(fileConn)
 }
 
-
+output <- data.frame(con_fac)
+class(output)
 
 
 

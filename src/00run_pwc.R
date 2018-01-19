@@ -72,7 +72,7 @@ przmdir_executable <- paste(przmdir_exe, przm_binary, sep="")
 vvwm_binary<- "VVWM.exe"
 vvwmdir_executable <- paste(vvwmdir_exe, vvwm_binary, sep="")
 #number of simulations 
-Nsims <- 10
+Nsims <- 150
 
 #weather file
 #can be .dvf or .wea
@@ -81,8 +81,8 @@ pwc_weather <- paste(pwcdir_weather, pwc_weather_used, sep="")
 
 #simulation start and end
 #must have mm/dd/yyyy format
-simstart <- "01/01/1988"
-simend <- "12/31/2000"
+simstart <- "01/01/1961"
+simend <- "12/31/2014"
 
 #run everything
 # write_update_run_przm

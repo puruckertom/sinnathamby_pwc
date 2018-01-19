@@ -15,24 +15,33 @@ pwcbenutput <- pwcoutdf[,3,1:Nsims]
 #pwcbenutput <- (pwcoutdf[,3,1:Nsims]*1000000)#1depth, 2Ave.Conc.H20, 3Ave.Conc.benth, 4Peak.Conc.H20
 ##calculate Maxbenthic concentration
 max_ben<-apply(pwcbenutput, 2, function(x) max(x, na.rm = TRUE))
-
+########finding sediment pcc####################
+max_sed=output*max_ben
 # which(is.na(as.numeric(as.character(max_ben[[1]]))))
 # is.infinite(max_ben)
 inputdf <- cbind(inputdf, max_h20)
 inputdf <- cbind(inputdf, max_ben)
+inputdf <- cbind(inputdf, output)
+inputdf <- cbind(inputdf, max_sed)
 write.csv(inputdf, file = paste(pwcdir, "io/inputdata_przm_vvwm_max.csv", sep = ""))
-#convert all NAN,infinite number to NA
+
+
+#convert all NAN,infinite number to NA in max_ben and max_sed
 max_ben[which(is.nan(max_ben))] = NA
 max_ben[which(is.infinite(max_ben))] = NA
-
+max_sed[which(is.nan(max_sed))] = NA
+max_sed[which(is.infinite(max_sed))] = NA
 #Locating index of rows in a data frame that have the value of NA
 which(is.na(max_ben), arr.ind=TRUE)
+which(is.na(max_sed), arr.ind=TRUE)
 ################PCC with Max
 max_ben<- na.omit(max_ben)
 #max_indata <- read.csv(file = paste(pwcdir, "io/inputdata_przm_vvwm_max.csv", sep = ""), header = TRUE)
-
+max_sed<- na.omit(max_ben)
 
 max_h2opcc<- pcc(inputdata, max_h20, rank = F)
-max_benpcc<- pcc(inputdata[-c(26,97), ], max_ben, rank = F)
+#max_benpcc<- pcc(inputdata, max_ben, rank = F)
+max_benpcc<- pcc(inputdata[-c(86,87), ], max_ben, rank = F)
+max_sedpcc<- pcc(inputdata[-c(86,87), ], max_sed, rank = F)
 
-
+#max_sedpcc<- pcc(inputdata, max_sed, rank = F)
