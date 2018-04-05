@@ -31,7 +31,7 @@ if(Sys.info()[4]=="stp-air"){
 }
 #Tom's epa window
 if(Sys.info()[4]=="DZ2626UTPURUCKE"){
-  pwcdir <- "k:/git/sinnathamby_pwc/"
+  pwcdir <- "d:/git/sinnathamby_pwc/"
   # pwc,przm (without directory, the file needs to be in vpdir_exe above)
   pwc_filename <- "RLF_Forest_Chloropyrifos.PWC"
   przm_filename <- "PRZM5.inp"
