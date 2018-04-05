@@ -1,21 +1,21 @@
-C:\Users\ssinnath\models\pwc 1.59\almond
-Chlorpyrifos
+C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet
+
 1
 True
-6040,,,
-91.2,,,
+824,,,
+13.2,,,
 25,,,
-202.7,,,
-25,,,
-29.6,,,
-40,,,
+73.5,,,
+20,,,
 0,,,
-170.6,,,
+10,,,
+0,,,
+34,,,
 25,
-35,,,
+304.35,,,
 350.57,,,
-1.87E-05,,,
-1.4,,,
+7.22E-05,,,
+65.5,,,
 0,0,
 0,0,
 0,0,
@@ -23,19 +23,19 @@ True
 0,0,
 0,0,
 0.0,,,
-0.000252,,,
+2.08E-05,,,
 98000,,,
 2
 CAalmond_WirrigSTD
-E:\Research\NewWeatherFiles\16306_grid.wea
+E:\Research\NewWeatherFiles\20737_grid.wea
 40
 True,True,True,False,False,False,False
 False,30,1,
 False
-894356
-1745.45
-4.0
-4.5
+2163597.217
+668447.405919
+0.029264088
+0.029264088
 1E-08
 False,0.5
 0.05
@@ -51,33 +51,33 @@ False,0.5
 5
 0.4
 False
-1.0,1.0
+1.0,0.4
 
-216
-19375,19390,19400,19584,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,
+54
+19375,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,-715874,
 1
-894356
-1745.45
-4.0
-4.5
-0.007819616,0.02345885,0.007819616,0.007819616,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+2163597.217
+668447.405919
+0.029264088
+0.029264088
+0.566418,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0
 0.0
-1
+0.4
 False
 False,15
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Parent_daily.csv"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate1_daily.csv"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate2_daily.csv"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Parent.txt"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate1.txt"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate2.txt"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Parent_DEEM.rdf"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate1_DEEM.rdf"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate2_DEEM.rdf"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Parent_Calendex.rdf"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate1_Calendex.rdf"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_Degradate2_Calendex.rdf"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_15_Parent.txt"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_15_Degradate1.txt"
-"C:\Users\ssinnath\models\pwc 1.59\almond_CAalmond_WirrigSTD_Custom_15_Degradate2.txt"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Parent_daily.csv"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Degradate1_daily.csv"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Degradate2_daily.csv"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Parent.txt"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Degradate1.txt"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Degradate2.txt"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Parent_DEEM.rdf"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Degradate1_DEEM.rdf"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Degradate2_DEEM.rdf"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Parent_Calendex.rdf"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Degradate1_Calendex.rdf"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_Degradate2_Calendex.rdf"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_15_Parent.txt"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_15_Degradate1.txt"
+"C:\Users\ssinnath\Research\CAVernalPools\vvwm\diazinon\modifiedw9almond_wet_CAalmond_WirrigSTD_Custom_15_Degradate2.txt"

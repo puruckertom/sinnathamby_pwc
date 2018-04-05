@@ -103,7 +103,7 @@ melted_pwc = melt(cont, id.vars="date")
 melted_pwc<- na.omit(melted_pwc)
 
 daily_max_sensitivity <- ggplot(melted_pwc, aes(x=date, y=value, group=variable)) +
-  geom_line(aes(colour=melted_pwc$variable)) +
+  geom_line(aes(colour=melted_pwc$variable)) +facet_wrap(~variable, scale="free")+
   # scale_colour_manual(values = c(
   #   "steelblue", "steelblue","steelblue",       "blue",    "limegreen" ,"firebrick3",   "indianred1",   "deeppink" ,  "gold3",      
   #   #wkrdrnratio,drnmitesurvive,wkrmitesurvive,fgrlifespan,fgrmaxprop,  TotalImmMites pctresistimmmites   InitColNectar,InitColPollen,
@@ -123,7 +123,7 @@ daily_max_sensitivity <- ggplot(melted_pwc, aes(x=date, y=value, group=variable)
   guides(fill=FALSE) +  
   xlab("Simulation Day") + 
   ylab("Partial Correlation Coefficient") +
-  annotate("text", x = 1000, y = 0.92, label = "Foliar", size=6) +
+  annotate("text", x = 1000, y = 0.92, label = "AveCon H20", size=6) +
   theme_bw() +
   scale_x_discrete(breaks = c(61,426,610,791,1035)) +
   theme(legend.position = "none",  axis.title.x=element_blank(), axis.text.x=element_blank())
@@ -131,10 +131,10 @@ daily_max_sensitivity <- ggplot(melted_pwc, aes(x=date, y=value, group=variable)
 daily_max_sensitivity <- ggplot(melted_pwc, aes(x=date, y=value, group=variable)) +
   geom_line(aes(colour=melted_pwc$variable))
 
-pdf(file= paste(pwcdir, "figures/daily_sensitivity_foliar.pdf", sep=""), width = 8, height = 6)
+pdf(file= paste(pwcdir, "figures/daily_sensitivity.pdf", sep=""), width = 8, height = 6)
 
 p <- ggplot(melted_pwc, aes(factor(variable), value)) 
-p + geom_boxplot() + facet_wrap(~variable, scale="free")
+p + geom_point() + facet_wrap(~variable, scale="free")
 
 
 dev.off()

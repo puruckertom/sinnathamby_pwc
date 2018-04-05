@@ -37,7 +37,7 @@ ndays <- length(timearray)
 dim(pwcoutdf)
 pwcoutdf[1:10,,1]#check output
 
-pwch2output <- pwcoutdf[,4,1:Nsims]#1depth, 2Ave.Conc.H20, 3Ave.Conc.benth, 4Peak.Conc.H20
+pwch2output <- pwcoutdf[,2,1:Nsims]#1depth, 2Ave.Conc.H20, 3Ave.Conc.benth, 4Peak.Conc.H20
 
 dim(pwch2output)# simulations x variables
 dim(inputdata)# days x simulations
@@ -56,8 +56,10 @@ for (i in 1:ndays){  #break
 }
 
 #write control pcc results to disk
+
 dim(tarray_pwcpccout)
 save(tarray_pwcpccout,file = paste(pwcdir,"io/tarray_pwcpccout.RData", sep = ""))
 write.csv(tarray_pwcpccout, file = paste(pwcdir, "io/tarray_pccout.csv", sep = ""))
 
+plot(temp_pcc)
 

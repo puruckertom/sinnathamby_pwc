@@ -4,7 +4,7 @@ load(paste(pwcdir, "io/przmout.RData", sep = ""))
 dim(outputdf)
 #pwc output
 load(paste(pwcdir, "io/pwcout.RData", sep = ""))
-
+load(paste(pwcdir, "io/output.RData", sep = ""))
 dim(pwcoutdf)
 #TIME
 load(paste(pwcdir,"io/timearray.RData", sep = ""))

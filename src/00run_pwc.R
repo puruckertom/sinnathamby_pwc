@@ -72,11 +72,11 @@ przmdir_executable <- paste(przmdir_exe, przm_binary, sep="")
 vvwm_binary<- "VVWM.exe"
 vvwmdir_executable <- paste(vvwmdir_exe, vvwm_binary, sep="")
 #number of simulations 
-Nsims <- 150
+Nsims <- 50
 
 #weather file
 #can be .dvf or .wea
-pwc_weather_used <- "17955_grid.wea"
+pwc_weather_used <- "20737_grid.wea"
 pwc_weather <- paste(pwcdir_weather, pwc_weather_used, sep="")
 
 #simulation start and end
@@ -100,6 +100,8 @@ source(paste(pwcdir,"src/05load_io.R",sep = ""))
 # run sensitivity analysis on time daily arrays
 source(paste(pwcdir,"src/06daily_sensitivity_analysis_linear.R",sep = ""))
 
+#
+source(paste(pwcdir,"src/06Max_sensitivity_analysis_linear.R",sep = ""))
 # plot results
-source(paste(pwcdir,"src/06bdaily_sensitivity_analyses_graphics.R",sep = ""))
-
+source(paste(pwcdir,"src/07sensitivity_analyses_graphics.R",sep = ""))
+source(paste(pwcdir,"src/08pardistribution.R",sep = ""))
