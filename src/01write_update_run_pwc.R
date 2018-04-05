@@ -1,12 +1,12 @@
 #Create empty dataframe for outputs
 ##############PRZM###########################################
-#df <- read.table(paste(pwcdir,"output/output",".zts", sep=""), header= FALSE, sep= "",
-#                 skip = 3, stringsAsFactors = FALSE, row.names=NULL)
-#dim(df)
-#str(df)
-#nrows <- dim(df)[[1]] 
-#ncols <- dim(df)[[2]]
-#outputdf <- array(data=NA, c(nrows,ncols,Nsims))
+df <- read.table(paste(pwcdir,"output/output",".zts", sep=""), header= FALSE, sep= "",
+                 skip = 3, stringsAsFactors = FALSE, row.names=NULL)
+dim(df)
+str(df)
+nrows <- dim(df)[[1]] 
+ncols <- dim(df)[[2]]
+outputdf <- array(data=NA, c(nrows,ncols,Nsims))
 
 #############PWC#########################################
 pwcdf <- read.csv(paste(pwcdir,"output/output_CAalmond_WirrigSTD_Custom_Parent_daily.csv", sep=""), header= FALSE, sep= ",",
