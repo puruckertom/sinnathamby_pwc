@@ -1,6 +1,7 @@
 con <- file(paste(pwcdir, "input/przm/vvwmTransfer",".txt",sep=""))
 l_old=readLines(con)
 l=readLines(con)
+close(con)
 
 #############################################################
 koc=round(runif(Nsims, min=0.95, max=1.05),2)
@@ -109,10 +110,11 @@ l[81]=paste("\"",file_path_as_absolute(newdir),"/","output_CAalmond_WirrigSTD_Cu
 l[82]=paste("\"",file_path_as_absolute(newdir),"/","output_CAalmond_WirrigSTD_Custom_15_Degradate1.txt","\"", sep="")#
 l[83]=paste("\"",file_path_as_absolute(newdir),"/","output_CAalmond_WirrigSTD_Custom_15_Degradate2.txt","\"", sep="")#
 
-local_file <- paste("vvwmTransfer",".txt", sep="")
-file.exists(local_file)
-file.create(local_file)
-file.exists(local_file)
-fileConn <-file(local_file)
+vvwm_file <- paste("vvwmTransfer",".txt", sep="")
+file.exists(vvwm_file)
+file.create(vvwm_file)
+file.exists(vvwm_file)
+con_vvwm <-file(vvwm_file)
 writeLines(l, 
-           fileConn)
+           con_vvwm)
+close(con_vvwm)
