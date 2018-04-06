@@ -43,6 +43,13 @@ if(Sys.info()[4]=="DZ2626USSINNATH"){
   pwc_filename <- "RLF_Forest_Chloropyrifos.PWC"
   przm_filename <- "PRZM5.inp"
 }
+#Sumathy's desktop
+if(Sys.info()[4]=="DESKTOP-7UFGA86"){
+  pwcdir <- "C:/Users/Sumathy/sinnathamby_pwc/"
+  # pwc,przm file (without directory, the file needs to be in vpdir_exe above)
+  pwc_filename <- "RLF_Forest_Chloropyrifos.PWC"
+  przm_filename <- "PRZM5.inp"
+}
 print(paste("Root directory location: ", pwcdir, sep=""))
 
 
@@ -72,7 +79,7 @@ przmdir_executable <- paste(przmdir_exe, przm_binary, sep="")
 vvwm_binary<- "VVWM.exe"
 vvwmdir_executable <- paste(vvwmdir_exe, vvwm_binary, sep="")
 #number of simulations 
-Nsims <- 50
+Nsims <- 5
 
 #weather file
 #can be .dvf or .wea
