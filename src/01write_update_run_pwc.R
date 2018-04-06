@@ -22,9 +22,10 @@ dim(con_fac)
 ###############update input file################
 for (Ite in 1:Nsims){
   print(Ite)
-  con <- file(paste(pwcdir, "input/przm/PRZM5",".inp",sep=""))
-  a_old=readLines(con)
-  a=readLines(con)
+  con_przm5 <- file(paste(pwcdir, "input/przm/PRZM5",".inp",sep=""))
+  a_old=readLines(con_przm5)
+  a=readLines(con_przm5)
+  close(con_przm5)
 ###########update parameter##########################################################################
   a[4]="C:\\git\\sinnathamby_pwc\\output\\20737_grid.wea"
  
@@ -141,7 +142,7 @@ for (Ite in 1:Nsims){
   }
 
   ###########################################################################################################
-  newdir <- paste0(pwcdir,"/input/przm/input",Ite)
+  newdir <- paste0(pwcdir,"input/przm/input",Ite)
   print(newdir)
   dir.create(newdir,showWarnings = FALSE) 
   cwd <- getwd()          # CURRENT dir
@@ -167,13 +168,14 @@ for (Ite in 1:Nsims){
   file.copy(vvwmdir_executable,newdir, recursive = FALSE, 
             copy.mode = TRUE)
   #write input file
-  local_file <- paste("PRZM5",".inp", sep="")
-  file.exists(local_file)
-  file.create(local_file)
-  file.exists(local_file)
-  fileConn <-file(local_file)
+  przm_file <- paste("PRZM5",".inp", sep="")
+  file.exists(przm_file)
+  file.create(przm_file)
+  file.exists(przm_file)
+  con_przm <-file(przm_file)
   writeLines(a, 
-             fileConn)
+             con_przm)
+  close(con_przm)
   # source(paste(pwcdir,"src/02write_przm_input.R",sep = ""))
   #run###PRZM.exe#
   system2(przmdir_executable)
@@ -199,16 +201,15 @@ for (Ite in 1:Nsims){
  #reading conversion factor from output################
   #con_fac <- scan((paste(newdir,"/","output_CAalmond_WirrigSTD_Custom_Parent",".txt", sep="")),skip=15,nlines=1,what="int")
   
-  con <- file(paste(newdir,"/","output_CAalmond_WirrigSTD_Custom_Parent",".txt", sep=""))
+  con_almond <- file(paste(newdir,"/","output_CAalmond_WirrigSTD_Custom_Parent",".txt", sep=""))
   #print(con)
-  open(con)
-  con_fac_line<-read.table(con,skip=15,nrow=1) #16-th line
+  open(con_almond)
+  con_fac_line <- read.table(con_almond,skip=15,nrow=1) #16-th line
   con_fac[Ite,]<-as.numeric(con_fac_line%>%select_if(is.numeric))
   print(con_fac)
-  close(con)
+  close(con_almond)
   ##############################################################################################
   setwd(cwd)
-  close(fileConn)
 }
 
 output <- data.frame(con_fac)
