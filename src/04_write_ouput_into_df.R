@@ -79,4 +79,5 @@ colnames(pwcoutdf) <- c("Depth(m)","Ave.Conc.H20","Ave.Conc.benth","Peak.Conc.H2
 save(pwcoutdf, file = paste(pwcdir,"io/pwcout.RData", sep = ""))
 #write.csv(pwcoutdf, file = paste(pwcdir, "io/pwctest.csv", sep = ""))
 
+#View(pwcoutdf)
 rm(pwcoutdf)
