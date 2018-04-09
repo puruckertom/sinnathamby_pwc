@@ -38,4 +38,6 @@ inputdf <- cbind(inputdf, FROC1)
 inputdf <- cbind(inputdf, DOC1)
 inputdf <- cbind(inputdf, PLMAS)
 write.csv(inputdf, file = paste(pwcdir, "io/inputdata_przm_vvwm.csv", sep = ""))
+
+
 #there are 33 parameters

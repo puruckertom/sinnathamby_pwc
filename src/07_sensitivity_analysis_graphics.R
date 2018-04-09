@@ -137,4 +137,5 @@ p <- ggplot(melted_pwc, aes(factor(variable), value))
 p + geom_point() + facet_wrap(~variable, scale="free")
 
 
+
 dev.off()

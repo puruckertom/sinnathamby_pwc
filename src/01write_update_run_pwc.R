@@ -47,12 +47,12 @@ for (Ite in 1:Nsims){
   uslek=runif(Nsims, min=0.4, max=0.65); #soil erodibility factor
   a[14]=paste(sprintf("%.02f", uslek[Ite]),substr(a[14],5,34), sep="")
   #############uslels slope length factor, representing the effect of slope length on erosion########################################
-  uslels=round(runif(Nsims, min=0.01, max=1),2)
+  uslels=runif(Nsims, min=0.01, max=1)
   uslels_list <- unlist(strsplit(a[14],","))
   uslels_list[2]<-uslels[Ite]
   a[14]=paste(uslels_list,collapse=",")
   #############uslep############################################################################################
-  uslep=round(runif(Nsims, min=0.01, max=1),2)
+  uslep=runif(Nsims, min=0.01, max=1)
   uslep_list <- unlist(strsplit(a[14],","))
   uslep_list[3]<-uslep[Ite]
   a[14]=paste(uslep_list,collapse=",")
@@ -70,7 +70,7 @@ for (Ite in 1:Nsims){
   
 
   Num=24#Number of Applications
-  CNPer=round(runif(Nsims, min=0.90, max=1.10),2)
+  CNPer=runif(Nsims, min=0.90, max=1.10)
   row_0=18
   for (i in 1:Num){
     row_t=row_0+(i-1)
@@ -82,7 +82,7 @@ for (Ite in 1:Nsims){
   }
   #####################root depth###############################################################################
   Numd=54#Number of crop periods that follow
-  depth=round(runif(Nsims, min=0.80, max=1.20),2)#152almond
+  depth=runif(Nsims, min=0.80, max=1.20)#152almond
   row_0=45
   for (i in 1:Numd){
     row_t=row_0+(i-1)
@@ -93,7 +93,7 @@ for (Ite in 1:Nsims){
 
   ######################USLEC##########################################################################################
   Numd=54#Number of crop periods that follow
-  uslec=round(runif(Nsims, min=0.25, max=0.99),2)
+  uslec=runif(Nsims, min=0.25, max=0.99)
   row_0=120
   for (i in 1:Numd){
     row_t=row_0+(i-1)
@@ -131,7 +131,7 @@ for (Ite in 1:Nsims){
   a[111]=paste(bd5_list,collapse=",")
   #######################################################################################################
   Num=54#Number of Applications
-  dep=round(runif(Nsims, min=0.975, max=1.025),2)
+  dep=runif(Nsims, min=0.975, max=1.025)
   row_0=120
   for (i in 1:Num){
     row_t=row_0+(i-1)

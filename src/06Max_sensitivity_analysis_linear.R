@@ -22,14 +22,25 @@ max_sedd=as.numeric(unlist(max_sed))
 typeof(max_sed)
 # which(is.na(as.numeric(as.character(max_ben[[1]]))))
 # is.infinite(max_ben)
-inputdf <- cbind(inputdf, max_h20)
+inputdf <- cbind(inputdata, max_h20)
+View(inputdf)
 inputdf <- cbind(inputdf, max_ben)
 inputdf <- cbind(inputdf, output)
 inputdf <- cbind(inputdf, max_sedd)
 write.csv(inputdf, file = paste(pwcdir, "io/inputdata_przm_vvwm_max.csv", sep = ""))
 
+library(ppcor)
 
-max_h2opcc<- pcc(inputdata, max_h20, rank = TRUE,nboot = 0, conf = 0.95)
+# max_h2opcc<- 
+dim(inputdata)
+for(i in 1:33){
+  var <- colnames(inputdata)[i]
+  pcc_value <- pcor(cbind(inputdata[,i],max_h20), method="pearson")$estimate[1,2]
+  print(paste(var, pcc_value, min(inputdata[,i]), max(inputdata[,i])))
+}
+
+pcor(inputdf,method="pearson")
+#, rank = TRUE,nboot = 0, conf = 0.95)
 max_benpcc<- pcc(inputdata, max_ben, rank = F)
 max_sedpcc<- pcc(inputdata, max_sedd, rank = F)
 

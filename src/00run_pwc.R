@@ -79,7 +79,15 @@ przmdir_executable <- paste(przmdir_exe, przm_binary, sep="")
 vvwm_binary<- "VVWM.exe"
 vvwmdir_executable <- paste(vvwmdir_exe, vvwm_binary, sep="")
 #number of simulations 
+<<<<<<< HEAD
 Nsims <- 1000
+=======
+<<<<<<< HEAD
+Nsims <- 1000
+=======
+Nsims <- 5
+>>>>>>> f92abd67fd133253d32340a18ae0ff7d83080bb7
+>>>>>>> c0572f810e564d19a35253f305765647792c2d9c
 
 #weather file
 #can be .dvf or .wea
