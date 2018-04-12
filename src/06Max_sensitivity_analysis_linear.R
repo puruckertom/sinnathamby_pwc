@@ -2,7 +2,10 @@
 ##calculate Max value
 # colMax <- function(data)sapply(data, max, na.rm = TRUE)
 # colMax(pwch2output)
-pwch2output <- pwcoutdf[,2,1:Nsims]#in kg/m3
+
+przmh2output <- (outputdf[,4,1:Nsims]*1000000)
+przmmax_h20<-apply(przmh2output, 2, function(x) max(x, na.rm = TRUE))
+pwch2output <- (pwcoutdf[,2,1:Nsims]*1000000)#in kg/m3
 #plot(pwch2output)
 #pwch2output <- (pwcoutdf[,4,1:Nsims]*1000000)#concentration in ppb
 max_h20<-apply(pwch2output, 2, function(x) max(x, na.rm = TRUE))
@@ -22,8 +25,10 @@ max_sedd=as.numeric(unlist(max_sed))
 typeof(max_sed)
 # which(is.na(as.numeric(as.character(max_ben[[1]]))))
 # is.infinite(max_ben)
+
+inputdf <- cbind(inputdata, przmmax_h20)
 inputdf <- cbind(inputdata, max_h20)
-View(inputdf)
+#View(inputdf)
 inputdf <- cbind(inputdf, max_ben)
 inputdf <- cbind(inputdf, output)
 inputdf <- cbind(inputdf, max_sedd)
@@ -33,7 +38,7 @@ library(ppcor)
 
 # max_h2opcc<- 
 dim(inputdata)
-for(i in 1:33){
+for(i in 1:31){
   var <- colnames(inputdata)[i]
   pcc_value <- pcor(cbind(inputdata[,i],max_h20), method="pearson")$estimate[1,2]
   print(paste(var, pcc_value, min(inputdata[,i]), max(inputdata[,i])))
@@ -41,10 +46,13 @@ for(i in 1:33){
 
 pcor(inputdf,method="pearson")
 #, rank = TRUE,nboot = 0, conf = 0.95)
+przmmax_h2opcc<- pcc(inputdata, przmmax_h20, rank = F)
+max_h2opcc<- pcc(inputdata, max_h20, rank = F)
 max_benpcc<- pcc(inputdata, max_ben, rank = F)
 max_sedpcc<- pcc(inputdata, max_sedd, rank = F)
 
 plot(max_h2opcc, ylim = c(-1,1))
+plot(przmmax_h2opcc, ylim = c(-1,1))
 boxplot(max_h20)
 
 # #convert all NAN,infinite number to NA in max_ben and max_sed
