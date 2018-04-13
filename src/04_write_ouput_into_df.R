@@ -43,7 +43,7 @@ save(timearray, file = paste(pwcdir,"io/timearray.RData",sep = ""))
 # }
 colnames(outputdf) <- c("YYYY","MM","DD","RUNF0","ESLS0","RFLX1","EFLX1","DCON1","INFL0")
 save(outputdf, file = paste(pwcdir,"io/przmout.RData",sep = ""))
-write.csv(outputdf, file = paste(pwcdir, "io/przmout.csv", sep = ""))
+#write.csv(outputdf, file = paste(pwcdir, "io/przmout.csv", sep = ""))
 rm(outputdf)
 
 #PWC csv output#######################################################################################################

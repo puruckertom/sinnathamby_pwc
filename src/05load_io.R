@@ -14,7 +14,7 @@ nrows<- length(timearray)
 #read input files
 indata <- read.csv(file = paste(pwcdir, "io/inputdata_przm_vvwm.csv", sep = ""), header = TRUE)
 class(indata)
-for(i in 1:34){
+for(i in 1:35){
   print(class(indata[,i]))
 }
 colnames(indata)
@@ -25,7 +25,7 @@ summary(indata)
 inputdata <- indata[,-1:-4]
 dim(inputdata)
 summary(inputdata)
-for(i in 1:31){
+for(i in 1:32){
   print(class(inputdata[,i]))
 }
 colnames(inputdata)

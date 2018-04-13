@@ -2,8 +2,8 @@
 #############PRZM###########################################
 df <- read.table(paste(pwcdir,"output/output",".zts", sep=""), header= FALSE, sep= "",
                 skip = 3, stringsAsFactors = FALSE, row.names=NULL)
-dim(df)
-str(df)
+# dim(df)
+# str(df)
 nrows_przm <- dim(df)[[1]]
 ncols_przm <- dim(df)[[2]]
 outputdf <- array(data=NA, c(nrows_przm,ncols_przm,Nsims))
@@ -148,11 +148,21 @@ for (Ite in 1:Nsims){
   for (i in 1:Num){
     row_t=row_0+(i-1)
     dep_list <- unlist(strsplit(a[row_t],","))
-    dep_list[7]<-dep[Ite]
+    dep_list[5]<-dep[Ite]
     a[row_t]=paste(dep_list,collapse=",")
 
   }
-
+ ###############application rate################################################################### 
+  Num=54#Number of Applications
+  app_rate=runif(Nsims, min=0.1, max=6)
+  row_0=120
+  for (i in 1:Num){
+    row_t=row_0+(i-1)
+    app_rate_list <- unlist(strsplit(a[row_t],","))
+    app_rate_list[6]<-app_rate[Ite]
+    a[row_t]=paste(app_rate_list,collapse=",")
+    
+  }
   ###########################################################################################################
   newdir <- paste0(pwcdir,"input/przm/input",Ite)
   print(newdir)

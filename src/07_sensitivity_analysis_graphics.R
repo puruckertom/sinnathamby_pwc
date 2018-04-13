@@ -88,17 +88,18 @@ date <- 30:ndays
 # plot_ly(z=tarray_pwcpccout, type="surface")
 # 
 # #1 or 61
-# date <- 61:ndays
+date <- 61:ndays
 # date2 <- seq(as.Date("1988/1/1"), as.Date("1991/1/1"), "days")
 # date3 <- date2[61:ndays]
 
 
 #plot control daily sensitivities
 pcc_max <- as.data.frame(cbind(date, tarray_pwcpccout[61:ndays,2:dim(tarray_pwcpccout)[2]]))
-
+library(MASS)
+library(dplyr)
 cont<- pcc_max%>%
-  select(date,uslek,uslels,uslep,CNPer,depth,uslec,bd1,bd2,bd3,bd4,bd5,dep,
-         benthic_depth,porosity,bulk_density,FROC2,DOC2,BNMAS,SUSED,CHL,FROC1,DOC1,PLMAS)
+  dplyr::select(date,PFAC,uslek,uslels,uslep,CN_c,CN_f,depth,uslec,bd1,bd2,bd3,bd4,bd5,dep,app_rate,koc,aer_aq,temp_ref_aer,
+         anae_aq,temp_ref_anae,SOL,benthic_depth,porosity,bulk_density,FROC2,DOC2,BNMAS,SUSED,CHL,FROC1,DOC1,PLMAS)
 melted_pwc = melt(cont, id.vars="date")
 melted_pwc<- na.omit(melted_pwc)
 
