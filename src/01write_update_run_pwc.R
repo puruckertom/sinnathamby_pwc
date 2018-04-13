@@ -20,6 +20,7 @@ pwcoutdf <- array(data=NA, c(rows_pwc,cols_pwc,Nsims))
 con_fac <- data.frame(matrix(ncol = 1, nrow = Nsims))
 dim(con_fac)
 ###############update input file################
+set.seed(42)
 for (Ite in 1:Nsims){
   print(Ite)
   con_przm5 <- file(paste(pwcdir, "input/przm/PRZM5",".inp",sep=""))
