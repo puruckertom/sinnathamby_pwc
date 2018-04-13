@@ -221,8 +221,7 @@ for (Ite in 1:Nsims){
 
   pwcoutdf[1:rows_pwc,1:cols_pwc,Ite] <- abind(pwcdf[1:rows_pwc,1:cols_pwc], along=3)
   
-  # newarray <- pwcdf[,2:ncols]
-  # pwcoutdf[1:nrows,1:(ncols-1),Ite] <- abind(newarray[1:nrows,1:(ncols-1)], along=3)
+
   ###########################################################################################
  #reading conversion factor from output################
   #con_fac <- scan((paste(newdir,"/","output_CAalmond_WirrigSTD_Custom_Parent",".txt", sep="")),skip=15,nlines=1,what="int")

@@ -81,7 +81,7 @@ vvwm_binary<- "VVWM.exe"
 vvwmdir_executable <- paste(vvwmdir_exe, vvwm_binary, sep="")
 #number of simulations 
 
-Nsims <- 500
+Nsims <- 5
 
 
 #weather file
