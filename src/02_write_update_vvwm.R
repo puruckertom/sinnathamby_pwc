@@ -4,91 +4,91 @@ l=readLines(con)
 close(con)
 
 #############################################################
-koc=runif(Nsims, min=600, max=1000)#Sorption coefficient (mL/g)
+koc=inputdf[Ite,"koc"]
 koc_list <- unlist(strsplit(l[5],","))
-koc_list[1]<-koc[Ite]
+koc_list[1]<-koc
 l[5]=paste(koc_list,collapse=",")
 
 ##########################################################
-aer_aq=runif(Nsims, min=5, max=35)#Water column degradation half-life (days)
+aer_aq=inputdf[Ite,"aer_aq"]
 aer_aq_list <- unlist(strsplit(l[6],","))
-aer_aq_list[1]<-aer_aq[Ite]
+aer_aq_list[1]<-aer_aq
 l[6]=paste(aer_aq_list,collapse=",")
 ##################################################################################
-temp_ref_aer=runif(Nsims, min=5, max=35)#Reference temperature for water column degradation
+temp_ref_aer=inputdf[Ite,"temp_ref_aer"]
 temp_ref_aer_list <- unlist(strsplit(l[7],","))
-temp_ref_aer_list[1]<-temp_ref_aer[Ite]
+temp_ref_aer_list[1]<-temp_ref_aer
 l[7]=paste(temp_ref_aer_list,collapse=",")
 ######################################################################################
-anae_aq=runif(Nsims, min=5, max=150)#Benthic degradation half-life (days)
+anae_aq=inputdf[Ite,"anae_aq"]
 anae_aq_list <- unlist(strsplit(l[8],","))
-anae_aq_list[1]<-anae_aq[Ite]
+anae_aq_list[1]<-anae_aq
 l[8]=paste(anae_aq_list,collapse=",")
 #####################################################################################
-temp_ref_anae=runif(Nsims, min=5, max=35)#Reference temperature for benthic degradation;
+temp_ref_anae=inputdf[Ite,"temp_ref_anae"]
 temp_ref_anae_list <- unlist(strsplit(l[9],","))
-temp_ref_anae_list[1]<-temp_ref_anae[Ite]
+temp_ref_anae_list[1]<-temp_ref_anae
 l[9]=paste(temp_ref_anae_list,collapse=",")
 #################################################################################
-# photo=round(runif(Nsims, min=0.1, max=25),1)#Diazinon was stable to aqueous photolysis and acceptable soil photolysis data are not available
-# photo_list <- unlist(strsplit(l[10],","))
-# photo_list[1]<-photo[Ite]
-# l[10]=paste(photo_list,collapse=",")
-################
-# RFLAT=runif(Nsims, min=5, max=45)#Reference latitude for photolysis
-# RFLAT_list <- unlist(strsplit(l[11],","))
-# RFLAT_list[1]<-RFLAT[Ite]
-# l[11]=paste(RFLAT_list,collapse=",")
-################################################################################
-# hydro=round(runif(Nsims, min=0.1, max=50),1)#Hydrolysis half-life (days); Stable
-# hydro_list <- unlist(strsplit(l[12],","))
-# hydro_list[1]<-hydro[Ite]
-# l[12]=paste(hydro_list,collapse=",")
+photo=inputdf[Ite,"photo"]
+photo_list <- unlist(strsplit(l[10],","))
+photo_list[1]<-photo
+l[10]=paste(photo_list,collapse=",")
+###############
+RFLAT=inputdf[Ite,"RFLAT"]
+RFLAT_list <- unlist(strsplit(l[11],","))
+RFLAT_list[1]<-RFLAT
+l[11]=paste(RFLAT_list,collapse=",")
+###############################################################################
+hydro=inputdf[Ite,"hydro"]
+hydro_list <- unlist(strsplit(l[12],","))
+hydro_list[1]<-hydro
+l[12]=paste(hydro_list,collapse=",")
 #############################################################################
-SOL=round(runif(Nsims, min=0.1, max=90),1)#Solubility (mg/L)
+SOL=inputdf[Ite,"SOL"]
 SOL_list <- unlist(strsplit(l[18],","))
-SOL_list[1]<-SOL[Ite]
+SOL_list[1]<-SOL
 l[18]=paste(SOL_list,collapse=",")
 ##############################################################################
-benthic_depth=round(runif(Nsims, min=0.01, max=1),2)#Depth of benthic region (m)
-l[41]=paste(benthic_depth[Ite])
+benthic_depth=inputdf[Ite,"benthic_depth"]
+l[41]=paste(benthic_depth)
 ##########################
-porosity=round(runif(Nsims, min=0.1, max=0.8),2)
-l[42]=paste(porosity[Ite])
+porosity=inputdf[Ite,"porosity"]
+l[42]=paste(porosity)
 ###########################################################################
-bulk_density=round(runif(Nsims, min=1.4, max=1.7),2)
-l[43]=paste(bulk_density[Ite])
+bulk_density=inputdf[Ite,"bulk_density"]
+l[43]=paste(bulk_density)
 ###########################################################################
-FROC2=round(runif(Nsims, min=0.01, max=0.99),2)#Fraction of organic carbon on sediment in benthic region.
-FROC2_a<-FROC2[Ite]
+FROC2=inputdf[Ite,"FROC2"]
+FROC2_a<-FROC2
 l[44]=paste(FROC2_a)
 ###########################################################################
-DOC2=round(runif(Nsims, min=0.01, max=60),2)#Concentration of dissolved organic carbon in benthic region (mg/L)
-DOC2_a<-DOC2[Ite]
+DOC2=inputdf[Ite,"DOC2"]
+DOC2_a<-DOC2
 l[45]=paste(DOC2_a)
 ###########################################################################
-BNMAS=round(runif(Nsims, min=0.001, max=5),3)#Areal concentration of biosolids in benthic region (g/m2)
-BNMAS_a<-BNMAS[Ite]
+BNMAS=inputdf[Ite,"BNMAS"]
+BNMAS_a<-BNMAS
 l[46]=paste(BNMAS_a)
 ###########################################################################
-SUSED=runif(Nsims, min=1, max=80)#Suspended solids concentration in water column (mg/L)
-SUSED_a<-SUSED[Ite]
+SUSED=inputdf[Ite,"SUSED"]
+SUSED_a<-SUSED
 l[48]=paste(SUSED_a)
 ###########################################################################
-CHL=round(runif(Nsims, min=0.001, max=1.5),3)#Chlorophyll concentration in water column (mg/L)
-CHL_a<-CHL[Ite]
+CHL=inputdf[Ite,"CHL"]
+CHL_a<-CHL
 l[49]=paste(CHL_a)
 ###########################################################################
-FROC1=round(runif(Nsims, min=0.01, max=1),2)#Fraction of organic carbon on suspended sediment in water column.
-FROC1_a<-FROC1[Ite]
+FROC1=inputdf[Ite,"FROC1"]
+FROC1_a<-FROC1
 l[50]=paste(FROC1_a)
 ###########################################################################
-DOC1=round(runif(Nsims, min=0.1, max=15),1)#Concentration of dissolved organic carbon in water column (mg/L)
-DOC1_a<-DOC1[Ite]
+DOC1=inputdf[Ite,"DOC1"]
+DOC1_a<-DOC1
 l[51]=paste(DOC1_a)
 ###########################################################################
-PLMAS=round(runif(Nsims, min=0.001, max=10),2)#Concentration of biosolids in water column (mg/L)
-PLMAS_a<-PLMAS[Ite]
+PLMAS=inputdf[Ite,"PLMAS"]
+PLMAS_a<-PLMAS
 l[52]=paste(PLMAS_a)
 ###########################################################################
 

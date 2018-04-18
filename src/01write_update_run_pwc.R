@@ -1,24 +1,25 @@
 #Create empty dataframe for outputs
 #############PRZM###########################################
-df <- read.table(paste(pwcdir,"output/output",".zts", sep=""), header= FALSE, sep= "",
+df_przm <- read.table(paste(pwcdir,"output/output",".zts", sep=""), header= FALSE, sep= "",
                 skip = 3, stringsAsFactors = FALSE, row.names=NULL)
 # dim(df)
 # str(df)
-nrows_przm <- dim(df)[[1]]
-ncols_przm <- dim(df)[[2]]
+nrows_przm <- dim(df_przm)[[1]]
+ncols_przm <- dim(df_przm)[[2]]
 outputdf <- array(data=NA, c(nrows_przm,ncols_przm,Nsims))
-
+#dim(outputdf)
 #############PWC#########################################
-pwcdf <- read.csv(paste(pwcdir,"output/output_CAalmond_WirrigSTD_Custom_Parent_daily.csv", sep=""), header= FALSE, sep= ",",
+pwcdf_o <- read.csv(paste(pwcdir,"output/output_CAalmond_WirrigSTD_Custom_Parent_daily.csv", sep=""), header= FALSE, sep= ",",
                   skip = 5, stringsAsFactors = FALSE, row.names=NULL)
-dim(pwcdf)
-str(pwcdf)
-rows_pwc <- dim(pwcdf)[[1]]
-cols_pwc <- dim(pwcdf)[[2]]
+# dim(pwcdf_o)
+# str(pwcdf_o)
+rows_pwc <- dim(pwcdf_o)[[1]]
+cols_pwc <- dim(pwcdf_o)[[2]]
 pwcoutdf <- array(data=NA, c(rows_pwc,cols_pwc,Nsims))
-######################################################
+#######################Conversion factor dataframe###############################
 con_fac <- data.frame(matrix(ncol = 1, nrow = Nsims))
 dim(con_fac)
+
 ###############update input file################
 set.seed(42)
 for (Ite in 1:Nsims){
@@ -34,136 +35,117 @@ for (Ite in 1:Nsims){
  
   ############################################################################################################
   ######Pan factor##############
-  PFAC=runif(Nsims, min=0.70, max=0.80);
-  a[10]=paste(sprintf("%.02f", PFAC[Ite]),substr(a[10],5,16), sep="")
+  PFAC=inputdf[Ite,"PFAC"]
+  a[10]=paste(sprintf("%.02f", PFAC),substr(a[10],5,16), sep="")
   #####USLEK#######################
-  # Soils high in clay have low K values, about 0.05 to 0.15, because
-  # they resistant to detachment. Coarse textured soils, such as sandy soils,
-  # have low K values, about 0.05 to 0.2, because of low runoff even though
-  # these soils are easily detached. Medium textured soils, such as the silt loam soils,
-  # have a moderate K values, about 0.25 to 0.4, because they are moderately susceptible
-  # to detachment and they produce moderate runoff. Soils having a high silt content are
-  # most erodible of all soils. They are easily detached; tend to crust and produce high rates
-  # of runoff. Values of K for these soils tend to be greater than 0.4.
-  uslek=runif(Nsims, min=0.05, max=0.65); #soil erodibility factor
-  a[14]=paste(sprintf("%.02f", uslek[Ite]),substr(a[14],5,34), sep="")
+  uslek=inputdf[Ite,"uslek"]
+  a[14]=paste(sprintf("%.02f", uslek),substr(a[14],5,34), sep="")
   #############uslels slope length factor, representing the effect of slope length on erosion########################################
-  uslels=runif(Nsims, min=0.01, max=5)
+  uslels=inputdf[Ite,"uslels"]
   uslels_list <- unlist(strsplit(a[14],","))
-  uslels_list[2]<-uslels[Ite]
+  uslels_list[2]<-uslels
   a[14]=paste(uslels_list,collapse=",")
   #############uslep############################################################################################
-  uslep=runif(Nsims, min=0.01, max=1)#0.10 (extensive practices) to 1.0 (no supporting practices)
+  uslep=inputdf[Ite,"uslep"]
   uslep_list <- unlist(strsplit(a[14],","))
-  uslep_list[3]<-uslep[Ite]
+  uslep_list[3]<-uslep
   a[14]=paste(uslep_list,collapse=",")
   #############CN###############################################################################################
-  # Num=24#Number of hydro-event changes
-  # CN=round(runif(Nsims, min=82, max=89),0)
-  #
-  #
-  # row_0=18
-  # for (i in 1:Num){
-  #   row_t=row_0+(i-1)
-  #
-  #   a[row_t]=paste(substr(a[row_t],1,22),CN[Ite])
-  # }
-
 
   Num=16#Number of Applications
-  CN_c=runif(Nsims, min=61, max=91)#CN cropping
+  CN_c=inputdf[Ite,"CN_c"]
   row_0=18
   for (i in 1:Num){
     row_t=row_0+(i-1)
     cn_list <- unlist(strsplit(a[row_t],","))
     #cn_list[6]<-(as.numeric(CNPer[Ite]))*(as.numeric(cn_list[6]))
-    cn_list[6]<-CN_c[Ite]
+    cn_list[6]<-CN_c
     a[row_t]=paste(cn_list,collapse=",")
 
   }
 
-  Num=8#Number of Applications
-  CN_f=runif(Nsims, min=82, max=88)#CN follow
-  row_0=34
-  for (i in 1:Num){
-    row_t=row_0+(i-1)
-    cn_list <- unlist(strsplit(a[row_t],","))
-    #cn_list[6]<-(as.numeric(CNPer[Ite]))*(as.numeric(cn_list[6]))
-    cn_list[6]<-CN_f[Ite]
-    a[row_t]=paste(cn_list,collapse=",")
+ Num=8#Number of Applications
+ CN_f=inputdf[Ite,"CN_f"]
+ row_0=34
+ for (i in 1:Num){
+   row_t=row_0+(i-1)
+   cn_list <- unlist(strsplit(a[row_t],","))
+   #cn_list[6]<-(as.numeric(CNPer[Ite]))*(as.numeric(cn_list[6]))
+   cn_list[6]<-CN_f
+   a[row_t]=paste(cn_list,collapse=",")
 
-  }
-  #####################root depth###############################################################################
-  Numd=54#Number of crop periods that follow
-  depth=runif(Nsims, min=1, max=130)#maximum soil depth is 139 cm. Root depth can't deeper than the depth of the soil layer
-  row_0=45
-  for (i in 1:Numd){
-    row_t=row_0+(i-1)
-    depth_list <- unlist(strsplit(a[row_t],","))
-    depth_list[10]<-depth[Ite]
-    a[row_t]=paste(depth_list,collapse=",")
-  }
+ }
+ #####################root depth###############################################################################
+ Numd=54#Number of crop periods that follow
+ depth=inputdf[Ite,"depth"]
+ row_0=45
+ for (i in 1:Numd){
+   row_t=row_0+(i-1)
+   depth_list <- unlist(strsplit(a[row_t],","))
+   depth_list[10]<-depth
+   a[row_t]=paste(depth_list,collapse=",")
+ }
 
-  ######################USLEC##########################################################################################
-  Numd=54#Number of crop periods that follow
-  uslec=round(runif(Nsims, min=0.003, max=1.0),3)#0.001 (well managed) to 1.0 (fallow or tilled condition)
-  row_0=120
-  for (i in 1:Numd){
-    row_t=row_0+(i-1)
+ ######################USLEC##########################################################################################
+ Numd=54#Number of crop periods that follow
+ uslec=inputdf[Ite,"uslec"]
+ row_0=120
+ for (i in 1:Numd){
+   row_t=row_0+(i-1)
 
-    a[row_t]=paste(substr(a[row_t],1,71), sprintf("%.02f",uslec[Ite]), substr(a[row_t],76,92),sep="")
-  }
-  ####Bulk density#############################################################################################
+   a[row_t]=paste(substr(a[row_t],1,71), sprintf("%.02f",uslec), substr(a[row_t],76,92),sep="")
+ }
+ ####Bulk density#############################################################################################
 
+ bd1=inputdf[Ite,"bd1"]
+ bd2=inputdf[Ite,"bd2"]
+ bd3=inputdf[Ite,"bd3"]
+ bd4=inputdf[Ite,"bd4"]
+ bd5=inputdf[Ite,"bd5"]
 
-  bd1=round(runif(Nsims, min=1.4, max=1.7),2) #1st layer
-  bd2=round(runif(Nsims, min=1.4, max=1.7),2) #2st layer
-  bd3=round(runif(Nsims, min=1.4, max=1.7),2) #3st layer
-  bd4=round(runif(Nsims, min=1.4, max=1.7),2) #4st layer
-  bd5=round(runif(Nsims, min=1.4, max=1.7),2) #5st layer
-  # BD6=runif(Nsims, min=1, max=2)
+ # BD6=runif(Nsims, min=1, max=2)
 
-  bd1_list <- unlist(strsplit(a[107],","))
-  bd1_list[5]<-bd1[Ite]
-  a[107]=paste(bd1_list,collapse=",")
+ bd1_list <- unlist(strsplit(a[107],","))
+ bd1_list[5]<-bd1
+ a[107]=paste(bd1_list,collapse=",")
 
-  bd2_list <- unlist(strsplit(a[108],","))
-  bd2_list[5]<-bd2[Ite]
-  a[108]=paste(bd2_list,collapse=",")
+ bd2_list <- unlist(strsplit(a[108],","))
+ bd2_list[5]<-bd2
+ a[108]=paste(bd2_list,collapse=",")
 
-  bd3_list <- unlist(strsplit(a[109],","))
-  bd3_list[5]<-bd3[Ite]
-  a[109]=paste(bd3_list,collapse=",")
+ bd3_list <- unlist(strsplit(a[109],","))
+ bd3_list[5]<-bd3
+ a[109]=paste(bd3_list,collapse=",")
 
-  bd4_list <- unlist(strsplit(a[110],","))
-  bd4_list[5]<-bd4[Ite]
-  a[110]=paste(bd4_list,collapse=",")
+ bd4_list <- unlist(strsplit(a[110],","))
+ bd4_list[5]<-bd4
+ a[110]=paste(bd4_list,collapse=",")
 
-  bd5_list <- unlist(strsplit(a[111],","))
-  bd5_list[5]<-bd5[Ite]
-  a[111]=paste(bd5_list,collapse=",")
-  #####################################depth of the pesticide application ##################################################################
-  Num=54#Number of Applications
-  dep=runif(Nsims, min=0.1, max=6)
-  row_0=120
-  for (i in 1:Num){
-    row_t=row_0+(i-1)
-    dep_list <- unlist(strsplit(a[row_t],","))
-    dep_list[5]<-dep[Ite]
-    a[row_t]=paste(dep_list,collapse=",")
+ bd5_list <- unlist(strsplit(a[111],","))
+ bd5_list[5]<-bd5
+ a[111]=paste(bd5_list,collapse=",")
+ #####################################depth of the pesticide application ##################################################################
+ Num=54#Number of Applications
+ dep=inputdf[Ite,"dep"]
+ row_0=120
+ for (i in 1:Num){
+   row_t=row_0+(i-1)
+   dep_list <- unlist(strsplit(a[row_t],","))
+   dep_list[5]<-dep
+   a[row_t]=paste(dep_list,collapse=",")
 
-  }
- ###############application rate################################################################### 
-  Num=54#Number of Applications
-  app_rate=runif(Nsims, min=0.1, max=6)
-  row_0=120
-  for (i in 1:Num){
-    row_t=row_0+(i-1)
-    app_rate_list <- unlist(strsplit(a[row_t],","))
-    app_rate_list[6]<-app_rate[Ite]
-    a[row_t]=paste(app_rate_list,collapse=",")
-    
-  }
+ }
+ ##############application rate###################################################################
+ Num=54#Number of Applications
+ app_rate=inputdf[Ite,"app_rate"]
+ row_0=120
+ for (i in 1:Num){
+   row_t=row_0+(i-1)
+   app_rate_list <- unlist(strsplit(a[row_t],","))
+   app_rate_list[6]<-app_rate
+   a[row_t]=paste(app_rate_list,collapse=",")
+
+ }
   ###########################################################################################################
   newdir <- paste0(pwcdir,"input/przm/input",Ite)
   print(newdir)
@@ -179,13 +161,14 @@ for (Ite in 1:Nsims){
   #update weather and output under each input folder
   a[4]=paste(file_path_as_absolute(newdir),"/",pwc_weather_used, sep="")
   a[6]=paste(file_path_as_absolute(newdir),"/","output.zts", sep="")
-  #copy PRZM.exe
+  #copy PRZM.exe############################################
   print(paste(file.exists(przmdir_executable), ": executable file at", przmdir_executable))
   file.copy(przmdir_executable,newdir, recursive = FALSE, 
             copy.mode = TRUE)
-  
+  ###########Update vvwm##################################################
   
   source(paste(pwcdir,"src/02_write_update_vvwm.R",sep = ""))
+
   #copy VVWM.exe
   print(paste(file.exists(vvwmdir_executable), ": executable file at", vvwmdir_executable))
   file.copy(vvwmdir_executable,newdir, recursive = FALSE, 
@@ -204,7 +187,8 @@ for (Ite in 1:Nsims){
   system2(przmdir_executable)
   # #run###vvwm.exe#
   system2(vvwmdir_executable, "vvwmTransfer.txt")
-  ###########################################################
+  #############################Write input into csv##############################
+
   ###############PRZM#############################################################
   df <- read.table(paste(newdir,"/","output",".zts", sep=""), header= FALSE, sep= "",
                    skip = 3, stringsAsFactors = FALSE, row.names=NULL)

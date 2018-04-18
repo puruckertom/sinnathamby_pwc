@@ -81,7 +81,7 @@ vvwm_binary<- "VVWM.exe"
 vvwmdir_executable <- paste(vvwmdir_exe, vvwm_binary, sep="")
 #number of simulations 
 
-Nsims <- 5
+Nsims <- 500
 
 
 #weather file
@@ -95,7 +95,8 @@ simstart <- "01/01/1961"
 simend <- "12/31/2014"
 
 #run everything
-# write_update_run_przm
+# parameterize inputs
+source(paste(pwcdir,"src/01a_parameterization.R",sep = ""))
 #write_update_run_vvwm
 source(paste(pwcdir,"src/01write_update_run_pwc.R",sep = ""))
 

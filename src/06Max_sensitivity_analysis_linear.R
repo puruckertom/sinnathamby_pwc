@@ -38,7 +38,7 @@ library(ppcor)
 
 # max_h2opcc<- 
 dim(inputdata)
-for(i in 1:32){
+for(i in 1:31){
   var <- colnames(inputdata)[i]
   pcc_value <- pcor(cbind(inputdata[,i],max_h20), method="pearson")$estimate[1,2]
   print(paste(var, pcc_value, min(inputdata[,i]), max(inputdata[,i])))
@@ -50,9 +50,9 @@ przmmax_h2opcc<- pcc(inputdata, przmmax_h20, rank = F)
 max_h2opcc<- pcc(inputdata, max_h20, rank = F)
 max_benpcc<- pcc(inputdata, max_ben, rank = F)
 max_sedpcc<- pcc(inputdata, max_sedd, rank = F)
-
-plot(max_h2opcc, ylim = c(-1,1))
 plot(przmmax_h2opcc, ylim = c(-1,1))
+plot(max_h2opcc, ylim = c(-1,1))
+
 plot(max_benpcc, ylim = c(-1,1))
 plot(max_sedpcc, ylim = c(-1,1))
 
