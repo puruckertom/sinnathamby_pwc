@@ -1,16 +1,15 @@
 par_distribution<- read.csv("C:/git/sinnathamby_pwc/figures/par_distribution.csv", header=TRUE, 
                 sep=",")
-par_distribution_50<- read.csv("C:/git/sinnathamby_pwc/figures/par_distribution_50.csv", header=TRUE, 
-                            sep=",")
+#par_distribution_50<- read.csv("C:/git/sinnathamby_pwc/figures/par_distribution_50.csv", header=TRUE,sep=",")
 library(reshape)
 par_distributionm <- melt(par_distribution,id.var=1)
-par_distributionm_50 <- melt(par_distribution_50,id.var=1)
+#par_distributionm_50 <- melt(par_distribution_50,id.var=1)
 attach(par_distributionm)
 library(ggplot2)
 library (scales)
 #scatter plot
 ggplot(par_distributionm, aes(x=value, y=max_h20))+geom_point(alpha = 0.2)+
-  facet_wrap( ~ variable, scales = "free",ncol=7)+theme_bw()+ stat_smooth(method = "loess") 
+  facet_wrap( ~ variable, scales = "free",ncol=8)+theme_bw()+ stat_smooth(method = "loess") 
 #histogram  
 ggplot(data=par_distributionm, aes(par_distributionm$value)) + geom_histogram()+geom_density(col=2)+ facet_wrap( ~ variable, scales = "free",ncol=7)
 
@@ -28,3 +27,10 @@ ggplot(data=par_distributionm, aes(par_distributionm$value)) + geom_histogram()+
 ggplot(data=par_distributionm, aes(x=max_h20, y=value, shape=variable,color=variable)) +
   geom_point(alpha = 0.2)+stat_smooth()+
   theme_bw()
+
+##pcc_plot###############################################
+pcc_plot<- read.csv("C:/git/sinnathamby_pwc/figures/pcc_plot.csv", header=TRUE, 
+                            sep=",")
+attach(pcc_plot)
+ggplot(pcc_plot, aes(x=Parameter, y=PCC,fill=Media))+geom_bar(colour="black",stat = "identity")+
+  facet_wrap(~ Media,ncol=4)+theme_bw()+ theme(legend.position="none")+ coord_flip()

@@ -37,6 +37,11 @@ for (Ite in 1:Nsims){
   ######Pan factor##############
   PFAC=inputdf[Ite,"PFAC"]
   a[10]=paste(sprintf("%.02f", PFAC),substr(a[10],5,16), sep="")
+  ###########Evaporation Depth (cm)################################
+  ANETD=inputdf[Ite,"ANETD"]
+  ANETD_list <- unlist(strsplit(a[10],","))
+  ANETD_list[3]<-ANETD
+  a[10]=paste(ANETD_list,collapse=",")
   #####USLEK#######################
   uslek=inputdf[Ite,"uslek"]
   a[14]=paste(sprintf("%.02f", uslek),substr(a[14],5,34), sep="")
@@ -50,6 +55,16 @@ for (Ite in 1:Nsims){
   uslep_list <- unlist(strsplit(a[14],","))
   uslep_list[3]<-uslep
   a[14]=paste(uslep_list,collapse=",")
+  ################slope#######################################################################################
+  slp=inputdf[Ite,"slp"]
+  slp_list <- unlist(strsplit(a[14],","))
+  slp_list[6]<-slp
+  a[14]=paste(slp_list,collapse=",")
+  ##############################hydraulic length##############################################################
+  hl=inputdf[Ite,"hl"]
+  hl_list <- unlist(strsplit(a[14],","))
+  hl_list[7]<-slp
+  a[14]=paste(hl_list,collapse=",")
   #############CN###############################################################################################
 
   Num=16#Number of Applications
@@ -75,6 +90,41 @@ for (Ite in 1:Nsims){
    a[row_t]=paste(cn_list,collapse=",")
 
  }
+ ######################USLEC##########################################################################################
+ Num=16#Number of crop periods that follow
+ uslec_c=inputdf[Ite,"uslec_c"]
+ row_0=18
+ for (i in 1:Num){
+   row_t=row_0+(i-1)
+   uslec_list <- unlist(strsplit(a[row_t],","))
+   uslec_list[4]<-uslec_c
+   a[row_t]=paste(uslec_list,collapse=",")
+   #a[row_t]=paste(substr(a[row_t],1,71), sprintf("%.02f",uslec), substr(a[row_t],76,92),sep="")
+ }
+ 
+ Num=8#Number of crop periods that follow
+ uslec_f=inputdf[Ite,"uslec_f"]
+ row_0=34
+ for (i in 1:Num){
+   row_t=row_0+(i-1)
+   uslec_list <- unlist(strsplit(a[row_t],","))
+   uslec_list[4]<-uslec_f
+   a[row_t]=paste(uslec_list,collapse=",")
+   #a[row_t]=paste(substr(a[row_t],1,71), sprintf("%.02f",uslec), substr(a[row_t],76,92),sep="")
+ }
+ 
+ 
+ #################################manning's n#################################################
+ Num_r5=24#Number of crop periods that follow
+ MNGN=inputdf[Ite,"MNGN"]
+ row_r5=18
+ for (i in 1:Num_r5){
+   row_t=row_r5+(i-1)
+   MNGN_list <- unlist(strsplit(a[row_t],","))
+   MNGN_list[5]<-MNGN
+   a[row_t]=paste(MNGN_list,collapse=",")
+   #a[row_t]=paste(substr(a[row_t],1,71), sprintf("%.02f",uslec), substr(a[row_t],76,92),sep="")
+ }
  #####################root depth###############################################################################
  Numd=54#Number of crop periods that follow
  depth=inputdf[Ite,"depth"]
@@ -85,16 +135,38 @@ for (Ite in 1:Nsims){
    depth_list[10]<-depth
    a[row_t]=paste(depth_list,collapse=",")
  }
-
- ######################USLEC##########################################################################################
+#################################COVMAX############################################
  Numd=54#Number of crop periods that follow
- uslec=inputdf[Ite,"uslec"]
- row_0=120
+ COVMAX=inputdf[Ite,"COVMAX"]
+ row_0=45
  for (i in 1:Numd){
    row_t=row_0+(i-1)
-
-   a[row_t]=paste(substr(a[row_t],1,71), sprintf("%.02f",uslec), substr(a[row_t],76,92),sep="")
+   COVMAX_list <- unlist(strsplit(a[row_t],","))
+   COVMAX_list[11]<-COVMAX
+   a[row_t]=paste(COVMAX_list,collapse=",")
  }
+ #############################HTMAX########################################################
+ Numd=54#Number of crop periods that follow
+ HTMAX=inputdf[Ite,"HTMAX"]
+ row_0=45
+ for (i in 1:Numd){
+   row_t=row_0+(i-1)
+   HTMAX_list <- unlist(strsplit(a[row_t],","))
+   HTMAX_list[12]<-HTMAX
+   a[row_t]=paste(HTMAX_list,collapse=",")
+ }
+ #############################holdup (cm)####################################
+ Numd=54#Number of crop periods that follow
+ holdup=inputdf[Ite,"holdup"]
+ row_0=45
+ for (i in 1:Numd){
+   row_t=row_0+(i-1)
+   holdup_list <- unlist(strsplit(a[row_t],","))
+   holdup_list[13]<-holdup
+   a[row_t]=paste(holdup_list,collapse=",")
+ }
+ 
+
  ####Bulk density#############################################################################################
 
  bd1=inputdf[Ite,"bd1"]
@@ -124,6 +196,39 @@ for (Ite in 1:Nsims){
  bd5_list <- unlist(strsplit(a[111],","))
  bd5_list[5]<-bd5
  a[111]=paste(bd5_list,collapse=",")
+ #####################################FC###########################################################################
+ Num_s=5#soil layer
+ fc=inputdf[Ite,"fc"]
+ row_s=107
+ for (i in 1:Num_s){
+   row_t=row_s+(i-1)
+   fc_list <- unlist(strsplit(a[row_t],","))
+   fc_list[7]<-fc
+   a[row_t]=paste(fc_list,collapse=",")
+   
+ }
+ ##################################WP############################################################################
+ Num_s=5#soil layer
+ WP=inputdf[Ite,"WP"]
+ row_s=107
+ for (i in 1:Num_s){
+   row_t=row_s+(i-1)
+   WP_list <- unlist(strsplit(a[row_t],","))
+   WP_list[8]<-WP
+   a[row_t]=paste(WP_list,collapse=",")
+   
+ }
+ ##################OC#######################################################################################
+ Num_s=5#soil layer
+ OC=inputdf[Ite,"OC"]
+ row_s=107
+ for (i in 1:Num_s){
+   row_t=row_s+(i-1)
+   OC_list <- unlist(strsplit(a[row_t],","))
+   OC_list[9]<-OC
+   a[row_t]=paste(OC_list,collapse=",")
+   
+ }
  #####################################depth of the pesticide application ##################################################################
  Num=54#Number of Applications
  dep=inputdf[Ite,"dep"]
@@ -146,7 +251,37 @@ for (Ite in 1:Nsims){
    a[row_t]=paste(app_rate_list,collapse=",")
 
  }
-  ###########################################################################################################
+ #################PLVKRT############################################################
+ PLVKRT=inputdf[Ite,"PLVKRT"]
+ PLVKRT_list <- unlist(strsplit(a[177],","))
+ PLVKRT_list[1]<-PLVKRT
+ a[177]=paste(PLVKRT_list,collapse=",")
+ ####################PLDKRT############################################
+ PLDKRT=inputdf[Ite,"PLDKRT"]
+ PLDKRT_list <- unlist(strsplit(a[177],","))
+ PLDKRT_list[2]<-PLDKRT
+ a[177]=paste(PLDKRT_list,collapse=",")
+ ##########################DWRATE##################################################################
+ Numhz=5#Number of soil layer
+ DWRATE=inputdf[Ite,"DWRATE"]
+ row_hz=209
+ for (i in 1:Numhz){
+   row_t=row_hz+(i-1)
+   DWRATE_list <- unlist(strsplit(a[row_t],","))
+   DWRATE_list[1]<-DWRATE
+   a[row_t]=paste(DWRATE_list,collapse=",")
+ }
+ ############################DSRATE###########################################################################
+ Numhz=5#Number of soil layer
+ DSRATE=inputdf[Ite,"DSRATE"]
+ row_hz=209
+ for (i in 1:Numhz){
+   row_t=row_hz+(i-1)
+   DSRATE_list <- unlist(strsplit(a[row_t],","))
+   DSRATE_list[2]<-DSRATE
+   a[row_t]=paste(DSRATE_list,collapse=",")
+ }
+ ###########################################################################################################
   newdir <- paste0(pwcdir,"input/przm/input",Ite)
   print(newdir)
   dir.create(newdir,showWarnings = FALSE) 
@@ -192,8 +327,8 @@ for (Ite in 1:Nsims){
   ###############PRZM#############################################################
   df <- read.table(paste(newdir,"/","output",".zts", sep=""), header= FALSE, sep= "",
                    skip = 3, stringsAsFactors = FALSE, row.names=NULL)
-  print(df)
-  print(dim(df))
+  #print(df)
+  #print(dim(df))
  # newdf <- df[,3:ncols]
   outputdf[1:nrows_przm,1:ncols_przm,Ite] <- abind(df[1:nrows_przm,1:ncols_przm], along=3)
   #print(outputdf)

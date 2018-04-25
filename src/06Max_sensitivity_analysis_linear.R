@@ -38,7 +38,7 @@ library(ppcor)
 
 # max_h2opcc<- 
 dim(inputdata)
-for(i in 1:31){
+for(i in 1:54){
   var <- colnames(inputdata)[i]
   pcc_value <- pcor(cbind(inputdata[,i],max_h20), method="pearson")$estimate[1,2]
   print(paste(var, pcc_value, min(inputdata[,i]), max(inputdata[,i])))

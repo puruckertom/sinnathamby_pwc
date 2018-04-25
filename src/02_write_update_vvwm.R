@@ -91,7 +91,20 @@ PLMAS=inputdf[Ite,"PLMAS"]
 PLMAS_a<-PLMAS
 l[52]=paste(PLMAS_a)
 ###########################################################################
-
+depth_0=inputdf[Ite,"depth_0"]
+depth_0_a<-depth_0
+l[61]=paste(depth_0_a)
+#############################################################################
+depth_max=inputdf[Ite,"depth_max"]
+depth_max_a<-depth_max
+l[62]=paste(depth_max_a)
+################################################################################
+bf=inputdf[Ite,"bf"]#baseflow
+l[65]=paste(bf)
+###############################################################################
+cf=inputdf[Ite,"cf"]#cropped fraction
+l[66]=paste(cf)
+###########################################################################
 l[1]=paste(file_path_as_absolute(newdir),"/","output", sep="")
 l[30]=paste(file_path_as_absolute(newdir),"/",pwc_weather_used, sep="")
 l[69]=paste("\"",file_path_as_absolute(newdir),"/","output_CAalmond_WirrigSTD_Custom_Parent_daily.csv","\"", sep="")#
