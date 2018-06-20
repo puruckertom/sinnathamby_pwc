@@ -38,7 +38,7 @@ dim(pwcoutdf)
 pwcoutdf[1:10,,1]#check output
 
 pwch2output <- pwcoutdf[,2,1:Nsims]#1depth, 2Ave.Conc.H20, 3Ave.Conc.benth, 4Peak.Conc.H20
-
+plot(pwcoutdf[,2,1:Nsims])
 dim(pwch2output)# simulations x variables
 dim(inputdata)# days x simulations
 nvars <- length(inputdata)#number of input variables

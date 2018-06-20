@@ -6,6 +6,7 @@ dim(outputdf)
 load(paste(pwcdir, "io/pwcout.RData", sep = ""))
 
 load(paste(pwcdir, "io/output.RData", sep = ""))
+colnames(paste(pwcdir, "io/output.RData", sep = ""))
 dim(pwcoutdf)
 #TIME
 load(paste(pwcdir,"io/timearray.RData", sep = ""))

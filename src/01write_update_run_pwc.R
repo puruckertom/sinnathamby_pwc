@@ -63,7 +63,7 @@ for (Ite in 1:Nsims){
   ##############################hydraulic length##############################################################
   hl=inputdf[Ite,"hl"]
   hl_list <- unlist(strsplit(a[14],","))
-  hl_list[7]<-slp
+  hl_list[7]<-hl
   a[14]=paste(hl_list,collapse=",")
   #############CN###############################################################################################
 
@@ -251,6 +251,17 @@ for (Ite in 1:Nsims){
    a[row_t]=paste(app_rate_list,collapse=",")
 
  }
+ ##############################application_eff##############################
+ Num=54#Number of Applications
+ app_eff=inputdf[Ite,"app_eff"]
+ row_0=120
+ for (i in 1:Num){
+   row_t=row_0+(i-1)
+   app_eff_list <- unlist(strsplit(a[row_t],","))
+   app_eff_list[7]<-app_eff
+   a[row_t]=paste(app_eff_list,collapse=",")
+   
+ }
  #################PLVKRT############################################################
  PLVKRT=inputdf[Ite,"PLVKRT"]
  PLVKRT_list <- unlist(strsplit(a[177],","))
@@ -273,12 +284,12 @@ for (Ite in 1:Nsims){
  }
  ############################DSRATE###########################################################################
  Numhz=5#Number of soil layer
- DSRATE=inputdf[Ite,"DSRATE"]
+ #DSRATE=inputdf[Ite,"DSRATE"]
  row_hz=209
  for (i in 1:Numhz){
    row_t=row_hz+(i-1)
    DSRATE_list <- unlist(strsplit(a[row_t],","))
-   DSRATE_list[2]<-DSRATE
+   DSRATE_list[2]<-DWRATE
    a[row_t]=paste(DSRATE_list,collapse=",")
  }
  ###########################################################################################################

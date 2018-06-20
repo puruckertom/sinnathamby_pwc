@@ -5,22 +5,27 @@
 
 przmh2output <- (outputdf[,4,1:Nsims])
 przmmax_h20<-apply(przmh2output, 2, function(x) max(x, na.rm = TRUE))
-pwch2output <- (pwcoutdf[,2,1:Nsims]*1000000)#in kg/m3
+pwch2output <- (pwcoutdf[,2,1:Nsims]*1000000)#in ug/ml
+
+
+
+#colnames(pwcoutdf) 
+#write.csv(pwch2output, file = paste(pwcdir, "io/pwch2output.csv", sep = ""))
 #plot(pwch2output)
 #pwch2output <- (pwcoutdf[,4,1:Nsims]*1000000)#concentration in ppb
 max_h20<-apply(pwch2output, 2, function(x) max(x, na.rm = TRUE))
 #plot(max_h20)
 #write.csv(pwch2output, file = paste(pwcdir, "io/pwch2output.csv", sep = ""))
 #Calculate PCC in H2o
-
+#plot(pwch2output)
 
 #extract benthic concentration
-pwcbenutput <- pwcoutdf[,3,1:Nsims]
+pwcbenutput <- (pwcoutdf[,3,1:Nsims]*1000000)
 #pwcbenutput <- (pwcoutdf[,3,1:Nsims]*1000000)#1depth, 2Ave.Conc.H20, 3Ave.Conc.benth, 4Peak.Conc.H20
 ##calculate Maxbenthic concentration
 max_ben<-apply(pwcbenutput, 2, function(x) max(x, na.rm = TRUE))
 ########finding sediment pcc####################
-max_sed=output*max_ben*1000000
+max_sed=output*max_ben
 max_sedd=as.numeric(unlist(max_sed))
 typeof(max_sed)
 # which(is.na(as.numeric(as.character(max_ben[[1]]))))

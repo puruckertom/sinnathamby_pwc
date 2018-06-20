@@ -1,4 +1,4 @@
-########### control daily sensitivity plot
+
 # Multiple plot function
 #
 # ggplot objects can be passed in ..., or to plotlist (as a list of ggplot objects)
@@ -52,7 +52,7 @@ dim(tarray_pwcpccout)
 colnames(tarray_pwcpccout) <-colnames(inputdata)
 colnames(tarray_pwcpccout) 
 ndays <- length(timearray)
-date <- 30:ndays
+#date <- 30:ndays
 # tarray_pwcpccout<-as.data.frame(t(tarray_pwcpccout))
 # tarray_pwcpccout$day<- 1:nrow(tarray_pwcpccout)
 # 
@@ -94,16 +94,15 @@ date <- 61:ndays
 
 
 #plot control daily sensitivities
-pcc_max <- as.data.frame(cbind(date, tarray_pwcpccout[61:ndays,2:dim(tarray_pwcpccout)[2]]))
+pcc_day <- as.data.frame(cbind(date, tarray_pwcpccout[61:ndays,2:dim(tarray_pwcpccout)[2]]))
 library(MASS)
 library(dplyr)
-cont<- pcc_max%>%
-  dplyr::select(date,PFAC,uslek,uslels,uslep,CN_c,CN_f,depth,uslec,bd1,bd2,bd3,bd4,bd5,dep,app_rate,koc,aer_aq,temp_ref_aer,
-         anae_aq,temp_ref_anae,SOL,benthic_depth,porosity,bulk_density,FROC2,DOC2,BNMAS,SUSED,CHL,FROC1,DOC1,PLMAS)
+cont<- pcc_day%>%select(one_of(c("date","PFAC","ANETD","uslek","uslels","uslep","slp","hl","CN_c","CN_f","uslec_c","uslec_f","MNGN","depth","COVMAX","HTMAX","holdup","bd1","bd2","bd3","bd4","bd5","fc","WP","OC","dep","app_rate","app_eff","PLVKRT","PLDKRT","DWRATE","DSRATE","koc","aer_aq","temp_ref_aer","anae_aq","temp_ref_anae","photo","RFLAT","hydro","SOL","benthic_depth","porosity","bulk_density","FROC2","DOC2","BNMAS","SUSED","CHL","FROC1","DOC1","PLMAS","depth_0","depth_max","bf","cf")))
+#(date,PFAC,ANETD,uslek,uslels,uslep,slp,hl,CN_c,CN_f,uslec_c,uslec_f,MNGN,depth,COVMAX,HTMAX,holdup,bd1,bd2,bd3,bd4,bd5,fc,WP,OC,dep,app_rate,PLVKRT,PLDKRT,DWRATE,DSRATE,koc,aer_aq,temp_ref_aer,anae_aq,temp_ref_anae,photo,RFLAT,hydro,SOL,benthic_depth,porosity,bulk_density,FROC2,DOC2,BNMAS,SUSED,CHL,FROC1,DOC1,PLMAS,depth_0,depth_max,bf,cf)
 melted_pwc = melt(cont, id.vars="date")
-melted_pwc<- na.omit(melted_pwc)
+#melted_pwc<- na.omit(melted_pwc)
 
-daily_max_sensitivity <- ggplot(melted_pwc, aes(x=date, y=value, group=variable)) +
+daily_pcc_sensitivity <- ggplot(melted_pwc, aes(x=date, y=value, group=variable)) +
   geom_line(aes(colour=melted_pwc$variable)) +facet_wrap(~variable, scale="free")+
   # scale_colour_manual(values = c(
   #   "steelblue", "steelblue","steelblue",       "blue",    "limegreen" ,"firebrick3",   "indianred1",   "deeppink" ,  "gold3",      
@@ -129,14 +128,48 @@ daily_max_sensitivity <- ggplot(melted_pwc, aes(x=date, y=value, group=variable)
   scale_x_discrete(breaks = c(61,426,610,791,1035)) +
   theme(legend.position = "none",  axis.title.x=element_blank(), axis.text.x=element_blank())
 
-daily_max_sensitivity <- ggplot(melted_pwc, aes(x=date, y=value, group=variable)) +
-  geom_line(aes(colour=melted_pwc$variable))
+daily_pcc_sensitivity <- ggplot(melted_pwc, aes(x=date, y=value, group=variable)) +
+  geom_line(aes(colour=melted_pwc$variable))+scale_x_continuous(limits = c(1, 365))
 
-pdf(file= paste(pwcdir, "figures/daily_sensitivity.pdf", sep=""), width = 8, height = 6)
+#Daily high sensitive paramters only
 
-p <- ggplot(melted_pwc, aes(factor(variable), value)) 
-p + geom_point() + facet_wrap(~variable, scale="free")
+cont1<- pcc_day%>%select(one_of(c("date","PFAC","uslek","uslels","uslep","CN_c","uslec_c","app_rate","benthic_depth","FROC2","bf")))
+#(date,PFAC,ANETD,uslek,uslels,uslep,slp,hl,CN_c,CN_f,uslec_c,uslec_f,MNGN,depth,COVMAX,HTMAX,holdup,bd1,bd2,bd3,bd4,bd5,fc,WP,OC,dep,app_rate,PLVKRT,PLDKRT,DWRATE,DSRATE,koc,aer_aq,temp_ref_aer,anae_aq,temp_ref_anae,photo,RFLAT,hydro,SOL,benthic_depth,porosity,bulk_density,FROC2,DOC2,BNMAS,SUSED,CHL,FROC1,DOC1,PLMAS,depth_0,depth_max,bf,cf)
+melted_pwc1 = melt(cont1, id.vars="date")
+#melted_pwc<- na.omit(melted_pwc)
 
 
+# p <- ggplot(melted_pwc1, aes(factor(melted_pwc1$variable), melted_pwc1$value)) 
+# p + geom_point() + facet_wrap(~melted_pwc1$variable, scale="free")
+dia_con<- read.csv("C:/Users/SSinnath/Research/CAVernalPools/vvwm/diazinon/watershed1/diazinon0203.csv", header=TRUE, 
+                        sep=",")
 
-dev.off()
+ ggplot(melted_pwc1, aes(x=date, y=melted_pwc1$value, group=melted_pwc1$variable)) +
+  geom_line(aes(colour=melted_pwc1$variable))+scale_x_continuous(limits = c(1097, 1826))+
+  guides(fill=FALSE) +  
+  #xlab("Number of Simulation Day from 1999") + 
+  #ylab("Partial Correlation Coefficient") +
+  theme_classic()+labs(title = "", x = "Number of Simulation Day from 1999", y = "Partial Correlation Coefficient", color = "Sensitive parameters")+ 
+  theme(axis.title.x = element_text(colour="black", size=14),axis.text.x  = element_text(colour="black", vjust=0.5, size=14))+ theme(axis.title.y = element_text(colour="black", size=14),axis.text.y  = element_text(vjust=0.5, size=14,colour="black" ))+
+   theme(legend.text=element_text(size=12))
+ 
+ ggplot(melted_pwc1, aes(x=date, y=melted_pwc1$value, group=melted_pwc1$variable)) +
+   geom_line(aes(colour=melted_pwc1$variable))+
+   guides(fill=FALSE) +  
+   #xlab("Number of Simulation Day from 1999") + 
+   #ylab("Partial Correlation Coefficient") +
+   theme_classic()+labs(title = "", x = "Number of Simulation Day from 1999", y = "Partial Correlation Coefficient", color = "Sensitive parameters")+ 
+   theme(axis.title.x = element_text(colour="black", size=14),axis.text.x  = element_text(colour="black", vjust=0.5, size=14))+ theme(axis.title.y = element_text(colour="black", size=14),axis.text.y  = element_text(vjust=0.5, size=14,colour="black" ))+
+   theme(legend.text=element_text(size=12))
+ 
+dia_sens<- read.csv("C:/Users/SSinnath/Research/CAVernalPools/vvwm/diazinon/watershed1/sensitivity.csv", header=TRUE, 
+                   sep=",")
+
+ggplot(dia_sens, aes(x = Parameter, y = PCC)) +
+ geom_bar(stat = "identity",position = "identity") +
+  #scale_fill_discrete(drop=F)+ #to force all levels to be considered, and thus different colors
+  theme_bw()+
+  theme(legend.position="none")+
+  labs(y="PCC", x="")+facet_wrap(~Media, ncol =1)+
+  theme(axis.text.x = element_text(size=12, angle=90),axis.text.y = element_text(size=14))+ geom_hline(aes(yintercept=0))
+  

@@ -86,12 +86,12 @@ Nsims <- 5000
 
 #weather file
 #can be .dvf or .wea
-pwc_weather_used <- "20737_grid.wea"
+pwc_weather_used <- "20737_grid_ncdc.wea"
 pwc_weather <- paste(pwcdir_weather, pwc_weather_used, sep="")
 
 #simulation start and end
 #must have mm/dd/yyyy format
-simstart <- "01/01/1961"
+simstart <- "01/01/1999"
 simend <- "12/31/2014"
 
 #run everything

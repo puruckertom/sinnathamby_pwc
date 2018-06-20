@@ -44,15 +44,17 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 }
 
 
-p1 <-ggplot(state,aes(x=Year,y=Pounds.x.100.000.of.pesticides.used, colour=Chemical))+theme_bw()+geom_line(size=1.5)+labs(x = "", y = "Poundsx10^5 of pesticides used",color="Category")+ theme(axis.title.y = element_text(face="bold", colour="black", size=12),axis.text.y  = element_text(vjust=0.5, face="bold", colour="black",size=12))+ theme(axis.title.x = element_text(face="bold", colour="black", size=12),axis.text.x  = element_text(vjust=0.5, face="bold", colour="black",size=12))+theme(legend.position="none", legend.direction="horizontal", legend.title = element_blank())+ scale_x_continuous(breaks=seq(1999,2014,2))
-p2 <-ggplot(merced,aes(x=Year,y=Pounds.x.100.000.of.pesticides.used, colour=Chemical))+ theme_bw()+geom_line(size=1.5)+labs(x = "Year", y = "Poundsx10^5 of pesticides used",color="Category")+ theme(axis.title.y = element_text(face="bold", colour="black", size=12),axis.text.y  = element_text(vjust=0.5,face="bold", colour="black", size=12))+ theme(axis.title.x = element_text(face="bold", colour="black", size=12),axis.text.x  = element_text(vjust=0.5, face="bold", colour="black",size=12))+theme(legend.position="bottom", legend.direction="horizontal", legend.title = element_blank(),legend.text = element_text(colour="black", size = 12, face = "bold"))+ scale_x_continuous(breaks=seq(1999,2014,2))
+p1 <-ggplot(state,aes(x=Year,y=Pounds.x.100.000.of.pesticides.used, colour=Chemical))+theme_bw()+geom_line(size=1.5)+labs(x = "", y = "Poundsx10^5 active ingredient",color="Category")+ theme(axis.title.y = element_text(face="bold", colour="black", size=12),axis.text.y  = element_text(vjust=0.5, face="bold", colour="black",size=12))+ theme(axis.title.x = element_text(face="bold", colour="black", size=12),axis.text.x  = element_text(vjust=0.5, face="bold", colour="black",size=12))+theme(legend.position="none", legend.direction="horizontal", legend.title = element_blank())+ scale_x_continuous(breaks=seq(1999,2014,2))
+p2 <-ggplot(merced,aes(x=Year,y=Pounds.x.100.000.of.pesticides.used, colour=Chemical))+ theme_bw()+geom_line(size=1.5)+labs(x = "Year", y = "Poundsx10^5 active ingredient",color="Category")+ theme(axis.title.y = element_text(face="bold", colour="black", size=12),axis.text.y  = element_text(vjust=0.5,face="bold", colour="black", size=12))+ theme(axis.title.x = element_text(face="bold", colour="black", size=12),axis.text.x  = element_text(vjust=0.5, face="bold", colour="black",size=12))+theme(legend.position="bottom", legend.direction="horizontal", legend.title = element_blank(),legend.text = element_text(colour="black", size = 12, face = "bold"))+ scale_x_continuous(breaks=seq(1999,2014,2))
 multiplot(p1, p2, cols=1)
 # ggplot(merced,aes(x=Year,y=Pounds.x.100.000.of.pesticides.used,fill=Category))+geom_line(ylim=c(1,1,1))+facet_grid(~Chemical)+ 
 #   labs(x = "", y = "Percent Decrease from Baseline",color="Category")
 
 
-
-
+ggplot(state,aes(x=Year,y=Pounds.x.100.000.of.pesticides.used, color=factor(Chemical)))+geom_point(size=3,pch=21)+facet_wrap(~Category, scale="free",ncol=1)+
+  stat_smooth()+
+  theme_bw()+labs(x = "", y = "Pounds x 10^5 active ingredient",color="Category")+ theme(axis.title.y = element_text(colour="black", size=12),axis.text.y  = element_text(vjust=0.5, colour="black",size=12))+ theme(axis.title.x = element_text(colour="black", size=12),axis.text.x  = element_text(vjust=0.5,colour="black",size=12))+
+  theme(legend.position="bottom", legend.direction="horizontal", legend.title = element_blank())+theme(legend.text=element_text(size=12))+scale_x_continuous(breaks=seq(1999,2014,1))+theme(strip.text.x = element_text(size =12))
 
 
 

@@ -7,7 +7,7 @@ dim(df)
 nrows <- dim(df)[[1]] #this is dependent on the duration of the simulation as set in the comparison.vrp file
 ncols <- dim(df)[[2]]
 
-timearray<-seq(as.Date("2000-01-01"), as.Date("2014-12-31"), by="days")#1961-01-01
+timearray<-seq(as.Date("1999-01-01"), as.Date("2014-12-31"), by="days")#1961-01-01
 timearray<- as.Date(timearray,"%m/%d/%Y")
 timediff <- timearray[3]-timearray[2]
 timearray[1] <- timearray[2]-timediff
