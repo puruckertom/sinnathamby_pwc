@@ -13,9 +13,9 @@ load(paste(pwcdir,"io/timearray.RData", sep = ""))
 #write.csv(timearray, file = paste(pwcdir, "io/timearray.csv", sep = ""))
 nrows<- length(timearray)
 #read input files
-indata <- read.csv(file = paste(pwcdir, "io/inputdata_przm_vvwm.csv", sep = ""), header = TRUE)
+indata <- read.csv(file = paste(pwcdir, "io/inputlist_przm_vvwm.csv", sep = ""), header = TRUE)
 class(indata)
-for(i in 1:57){
+for(i in 1:55){
   print(class(indata[,i]))
 }
 colnames(indata)
@@ -27,11 +27,12 @@ summary(indata)
 # #extract input vectors from dataframe
 # for(i in 1:length(inputdata)){assign(names(inputdata)[i], inputdata[[i]])}
 
+inputdata <- indata[,-1]
 
-inputdata <- indata[,-1:-4]
+#inputdata <- indata[,-1:-4]
 dim(inputdata)
 summary(inputdata)
-for(i in 1:54){
+for(i in 1:55){
   print(class(inputdata[,i]))
 }
 colnames(inputdata)

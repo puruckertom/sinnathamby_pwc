@@ -127,7 +127,7 @@ g <- g + facet_wrap(~variable)+scale_x_log10(limits=c(0.000001, 20))+
   theme(legend.key.size = unit(0.5, "in"))+
   theme(legend.text=element_text(size=14))+guides(fill=guide_legend(nrow=2,byrow=TRUE)) 
 
-group.colors <- c(rep("blue"), rep("red"))
+group.colors <- c(rep("red"), rep("blue"))
 g <- ggplot(c,aes(x=value*1000000,fill=variable ))
 g <- g + geom_histogram(aes(y = (..count..)/sum(..count..)),alpha=0.5,color="black", position="identity")+scale_x_log10(limits=c(0.000001, 100))
 g <- g + scale_fill_manual(values=group.colors)+theme_classic()+
@@ -138,9 +138,10 @@ g <- g + scale_fill_manual(values=group.colors)+theme_classic()+
   theme(axis.title.x = element_text(colour="black", size=14),axis.text.x  = element_text(size=14))+ 
   theme(axis.title.y = element_text(colour="black", size=14),axis.text.y  = element_text(size=14,colour="black" ))+
   theme(legend.key.size = unit(0.5, "in"))+
-  theme(legend.text=element_text(size=14))+guides(fill=guide_legend(nrow=2,byrow=TRUE))+labs(x = "Diazinon Concentration (ug/l)",y = "Relative frequency") 
+  theme(legend.text=element_text(size=14))+guides(fill=guide_legend(nrow=2,byrow=TRUE))+labs(x = "log [Diazinon daily average concentration (ug/l)]",y = "Relative frequency") 
 
-
+sum(c$value*1000000>0.17)
+dim(c)
 ggplot() + geom_histogram(aes((pwcoutdf["Ave.Conc.H20"])*1000000),fill = "red", alpha = 0.2,color="black")+
   geom_histogram(aes((pwcoutdf["Ave.Conc.benth"])*1000000),fill = "blue", alpha = 0.2,color="black")+scale_x_log10()
 
@@ -172,7 +173,7 @@ geom_histogram(aes(x=max_ben, y =(..count..)/sum(..count..)),alpha=0.5,fill="gre
 geom_histogram(aes(x=max_h20, y =(..count..)/sum(..count..)),alpha=0.5,fill="blue")+ 
 geom_histogram(aes(x=Stream, y =(..count..)/sum(..count..)), fill="red")+
 geom_histogram(aes(x=Observed, y =(..count..)/sum(..count..)),alpha=0.5,fill="black")+ scale_x_log10()+
-labs(x="Maximum concentration (ug/l)",y = "Relative frequency")+ theme_classic()+
+labs(x="log [Maximum concentration (ug/l)]",y = "Relative frequency")+ theme_classic()+
 #geom_vline(aes(xintercept=0.04, linetype=name),show.legend =FALSE, color="red", linetype="dashed", size=1)+ 
 #geom_vline(xintercept=0.1, color="blue" ,linetype="dashed", size=1) + 
 #geom_vline(xintercept=1.1, color="black", linetype="dashed", size=1) + 
@@ -183,8 +184,9 @@ theme(axis.title.y = element_text(colour="black", size=14),axis.text.y  = elemen
 theme(legend.key.size = unit(0.5, "in"))+
 theme(legend.text=element_text(size=14))+guides(fill=guide_legend(nrow=2,byrow=TRUE))  
 
-
-
+sum(test$max_ben>0.17)
+sum(test$max_h20>0.17)
+dim(test)
 # ggplot(max_con, aes(x=Concentration, color=Media,fill=Media)) + 
 #   geom_histogram(alpha=0.5, position="identity")+
 #   scale_x_log10()+scale_color_manual(labels = c("Benthic", "Water","Sediment"),values=c("green","blue" , "red"))+

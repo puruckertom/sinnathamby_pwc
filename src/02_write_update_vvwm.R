@@ -4,105 +4,105 @@ l=readLines(con)
 close(con)
 
 #############################################################
-koc=inputdf[Ite,"koc"]
+koc=input_list[Ite,"koc"]
 koc_list <- unlist(strsplit(l[5],","))
 koc_list[1]<-koc
 l[5]=paste(koc_list,collapse=",")
 
 ##########################################################
-aer_aq=inputdf[Ite,"aer_aq"]
+aer_aq=input_list[Ite,"aer_aq"]
 aer_aq_list <- unlist(strsplit(l[6],","))
 aer_aq_list[1]<-aer_aq
 l[6]=paste(aer_aq_list,collapse=",")
 ##################################################################################
-temp_ref_aer=inputdf[Ite,"temp_ref_aer"]
+temp_ref_aer=input_list[Ite,"temp_ref_aer"]
 temp_ref_aer_list <- unlist(strsplit(l[7],","))
 temp_ref_aer_list[1]<-temp_ref_aer
 l[7]=paste(temp_ref_aer_list,collapse=",")
 ######################################################################################
-anae_aq=inputdf[Ite,"anae_aq"]
+anae_aq=input_list[Ite,"anae_aq"]
 anae_aq_list <- unlist(strsplit(l[8],","))
 anae_aq_list[1]<-anae_aq
 l[8]=paste(anae_aq_list,collapse=",")
 #####################################################################################
-temp_ref_anae=inputdf[Ite,"temp_ref_anae"]
+temp_ref_anae=input_list[Ite,"temp_ref_anae"]
 temp_ref_anae_list <- unlist(strsplit(l[9],","))
 temp_ref_anae_list[1]<-temp_ref_anae
 l[9]=paste(temp_ref_anae_list,collapse=",")
 #################################################################################
-photo=inputdf[Ite,"photo"]
+photo=input_list[Ite,"photo"]
 photo_list <- unlist(strsplit(l[10],","))
 photo_list[1]<-photo
 l[10]=paste(photo_list,collapse=",")
 ###############
-RFLAT=inputdf[Ite,"RFLAT"]
+RFLAT=input_list[Ite,"RFLAT"]
 RFLAT_list <- unlist(strsplit(l[11],","))
 RFLAT_list[1]<-RFLAT
 l[11]=paste(RFLAT_list,collapse=",")
 ###############################################################################
-hydro=inputdf[Ite,"hydro"]
+hydro=input_list[Ite,"hydro"]
 hydro_list <- unlist(strsplit(l[12],","))
 hydro_list[1]<-hydro
 l[12]=paste(hydro_list,collapse=",")
 #############################################################################
-SOL=inputdf[Ite,"SOL"]
+SOL=input_list[Ite,"SOL"]
 SOL_list <- unlist(strsplit(l[18],","))
 SOL_list[1]<-SOL
 l[18]=paste(SOL_list,collapse=",")
 ##############################################################################
-benthic_depth=inputdf[Ite,"benthic_depth"]
+benthic_depth=input_list[Ite,"benthic_depth"]
 l[41]=paste(benthic_depth)
 ##########################
-porosity=inputdf[Ite,"porosity"]
+porosity=input_list[Ite,"porosity"]
 l[42]=paste(porosity)
 ###########################################################################
-bulk_density=inputdf[Ite,"bulk_density"]
+bulk_density=input_list[Ite,"bulk_density"]
 l[43]=paste(bulk_density)
 ###########################################################################
-FROC2=inputdf[Ite,"FROC2"]
+FROC2=input_list[Ite,"FROC2"]
 FROC2_a<-FROC2
 l[44]=paste(FROC2_a)
 ###########################################################################
-DOC2=inputdf[Ite,"DOC2"]
+DOC2=input_list[Ite,"DOC2"]
 DOC2_a<-DOC2
 l[45]=paste(DOC2_a)
 ###########################################################################
-BNMAS=inputdf[Ite,"BNMAS"]
+BNMAS=input_list[Ite,"BNMAS"]
 BNMAS_a<-BNMAS
 l[46]=paste(BNMAS_a)
 ###########################################################################
-SUSED=inputdf[Ite,"SUSED"]
+SUSED=input_list[Ite,"SUSED"]
 SUSED_a<-SUSED
 l[48]=paste(SUSED_a)
 ###########################################################################
-CHL=inputdf[Ite,"CHL"]
+CHL=input_list[Ite,"CHL"]
 CHL_a<-CHL
 l[49]=paste(CHL_a)
 ###########################################################################
-FROC1=inputdf[Ite,"FROC1"]
+FROC1=input_list[Ite,"FROC1"]
 FROC1_a<-FROC1
 l[50]=paste(FROC1_a)
 ###########################################################################
-DOC1=inputdf[Ite,"DOC1"]
+DOC1=input_list[Ite,"DOC1"]
 DOC1_a<-DOC1
 l[51]=paste(DOC1_a)
 ###########################################################################
-PLMAS=inputdf[Ite,"PLMAS"]
+PLMAS=input_list[Ite,"PLMAS"]
 PLMAS_a<-PLMAS
 l[52]=paste(PLMAS_a)
 ###########################################################################
-depth_0=inputdf[Ite,"depth_0"]
+depth_0=input_list[Ite,"depth_0"]
 depth_0_a<-depth_0
 l[61]=paste(depth_0_a)
 #############################################################################
-depth_max=inputdf[Ite,"depth_max"]
+depth_max=input_list[Ite,"depth_max"]
 depth_max_a<-depth_max
 l[62]=paste(depth_max_a)
 ################################################################################
-bf=inputdf[Ite,"bf"]#baseflow
+bf=input_list[Ite,"bf"]#baseflow
 l[65]=paste(bf)
 ###############################################################################
-cf=inputdf[Ite,"cf"]#cropped fraction
+cf=input_list[Ite,"cf"]#cropped fraction
 l[66]=paste(cf)
 ###########################################################################
 l[1]=paste(file_path_as_absolute(newdir),"/","output", sep="")
