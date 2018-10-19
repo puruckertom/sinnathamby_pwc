@@ -1,4 +1,4 @@
-/input/przm/input*
+/input/przm/input/*
 
 # History files
 .Rhistory
