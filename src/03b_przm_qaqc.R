@@ -1,4 +1,6 @@
-dim(inputdf) # sims cols
+dim(inputdf)
+dim(input_list)
+# sims cols
 #50 34
 dim(outputdf) # days outputs sims
 

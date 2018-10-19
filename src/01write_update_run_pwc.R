@@ -35,40 +35,40 @@ for (Ite in 1:Nsims){
  
   ############################################################################################################
   ######Pan factor##############
-  PFAC=input_list[Ite,"PFAC"]
+  PFAC=round(input_list[Ite,"PFAC"],2)
   a[10]=paste(sprintf("%.02f", PFAC),substr(a[10],5,16), sep="")
   ###########Evaporation Depth (cm)################################
-  ANETD=input_list[Ite,"ANETD"]
+  ANETD=round(input_list[Ite,"ANETD"],0)
   ANETD_list <- unlist(strsplit(a[10],","))
   ANETD_list[3]<-ANETD
   a[10]=paste(ANETD_list,collapse=",")
   #####USLEK#######################
-  uslek=input_list[Ite,"uslek"]
+  uslek=round(input_list[Ite,"uslek"],2)
   a[14]=paste(sprintf("%.02f", uslek),substr(a[14],5,34), sep="")
   #############uslels slope length factor, representing the effect of slope length on erosion########################################
-  uslels=input_list[Ite,"uslels"]
+  uslels=round(input_list[Ite,"uslels"],2)
   uslels_list <- unlist(strsplit(a[14],","))
   uslels_list[2]<-uslels
   a[14]=paste(uslels_list,collapse=",")
   #############uslep############################################################################################
-  uslep=input_list[Ite,"uslep"]
+  uslep=round(input_list[Ite,"uslep"],2)
   uslep_list <- unlist(strsplit(a[14],","))
   uslep_list[3]<-uslep
   a[14]=paste(uslep_list,collapse=",")
   ################slope#######################################################################################
-  slp=input_list[Ite,"slp"]
+  slp=round(input_list[Ite,"slp"],2)
   slp_list <- unlist(strsplit(a[14],","))
   slp_list[6]<-slp
   a[14]=paste(slp_list,collapse=",")
   ##############################hydraulic length##############################################################
-  hl=input_list[Ite,"hl"]
+  hl=round(input_list[Ite,"hl"],0)
   hl_list <- unlist(strsplit(a[14],","))
   hl_list[7]<-hl
   a[14]=paste(hl_list,collapse=",")
   #############CN###############################################################################################
 
   Num=16#Number of Applications
-  CN_c=input_list[Ite,"CN_c"]
+  CN_c=round(input_list[Ite,"CN_c"],0)
   row_0=18
   for (i in 1:Num){
     row_t=row_0+(i-1)
@@ -80,7 +80,7 @@ for (Ite in 1:Nsims){
   }
 
  Num=8#Number of Applications
- CN_f=input_list[Ite,"CN_f"]
+ CN_f=round(input_list[Ite,"CN_f"],0)
  row_0=34
  for (i in 1:Num){
    row_t=row_0+(i-1)
@@ -92,7 +92,7 @@ for (Ite in 1:Nsims){
  }
  ######################USLEC##########################################################################################
  Num=16#Number of crop periods that follow
- uslec_c=input_list[Ite,"uslec_c"]
+ uslec_c=round(input_list[Ite,"uslec_c"],3)
  row_0=18
  for (i in 1:Num){
    row_t=row_0+(i-1)
@@ -103,7 +103,7 @@ for (Ite in 1:Nsims){
  }
  
  Num=8#Number of crop periods that follow
- uslec_f=input_list[Ite,"uslec_f"]
+ uslec_f=round(input_list[Ite,"uslec_f"],3)
  row_0=34
  for (i in 1:Num){
    row_t=row_0+(i-1)
@@ -116,7 +116,7 @@ for (Ite in 1:Nsims){
  
  #################################manning's n#################################################
  Num_r5=24#Number of crop periods that follow
- MNGN=input_list[Ite,"MNGN"]
+ MNGN=round(input_list[Ite,"MNGN"],3)
  row_r5=18
  for (i in 1:Num_r5){
    row_t=row_r5+(i-1)
@@ -127,7 +127,7 @@ for (Ite in 1:Nsims){
  }
  #####################root depth###############################################################################
  Numd=16#Number of crop periods that follow
- depth=input_list[Ite,"depth"]
+ depth=round(input_list[Ite,"depth"],0)
  row_0=45
  for (i in 1:Numd){
    row_t=row_0+(i-1)
@@ -137,7 +137,7 @@ for (Ite in 1:Nsims){
  }
 #################################COVMAX############################################
  Numd=16#Number of crop periods that follow
- COVMAX=input_list[Ite,"COVMAX"]
+ COVMAX=round(input_list[Ite,"COVMAX"],3)
  row_0=45
  for (i in 1:Numd){
    row_t=row_0+(i-1)
@@ -147,7 +147,7 @@ for (Ite in 1:Nsims){
  }
  #############################HTMAX########################################################
  Numd=16#Number of crop periods that follow
- HTMAX=input_list[Ite,"HTMAX"]
+ HTMAX=round(input_list[Ite,"HTMAX"],0)
  row_0=45
  for (i in 1:Numd){
    row_t=row_0+(i-1)
@@ -157,7 +157,7 @@ for (Ite in 1:Nsims){
  }
  #############################holdup (cm)####################################
  Numd=16#Number of crop periods that follow
- holdup=input_list[Ite,"holdup"]
+ holdup=round(input_list[Ite,"holdup"],2)
  row_0=45
  for (i in 1:Numd){
    row_t=row_0+(i-1)
@@ -165,45 +165,49 @@ for (Ite in 1:Nsims){
    holdup_list[13]<-holdup
    a[row_t]=paste(holdup_list,collapse=",")
  }
- 
-
+ ###############max rate irrigation#########
+ # RATEAP=input_list[Ite,"RATEAP"]
+ # RATEAP_list <- unlist(strsplit(a[64],","))
+ # RATEAP_list[4]<-RATEAP
+ # a[64]=paste(RATEAP_list,collapse=",")
  ####Bulk density#############################################################################################
 
- bd1=input_list[Ite,"bd1"]
- bd2=input_list[Ite,"bd2"]
- bd3=input_list[Ite,"bd3"]
- bd4=input_list[Ite,"bd4"]
- bd5=input_list[Ite,"bd5"]
+ bd1=round(input_list[Ite,"bd1"],2)
+ bd2=round(input_list[Ite,"bd2"],2)
+ bd3=round(input_list[Ite,"bd3"],2)
+ bd4=round(input_list[Ite,"bd4"],2)
+ bd5=round(input_list[Ite,"bd5"],2)
 
  # BD6=runif(Nsims, min=1, max=2)
 
- # bd1_list <- unlist(strsplit(a[69],","))
- # bd1_list[5]<-bd1
- # a[69]=paste(bd1_list,collapse=",")
- a[69]=paste(substr(a[69],1,15), sprintf("%.02f",bd1), substr(a[69],20,55),sep=",")
+ bd1_list <- c(unlist(strsplit(a[69],",")),"")#adding extra empty value at end
+ bd1_list[5]<-bd1
+ a[69]=paste(bd1_list,"",collapse=",")
+ #a[69]=paste(substr(a[69],1,15), sprintf("%.02f",bd1), substr(a[69],20,55),sep=",")
  
- # bd2_list <- unlist(strsplit(a[70],","))
- # bd2_list[5]<-bd2
- # a[70]=paste(bd2_list,collapse=",")
- a[70]=paste(substr(a[70],1,13), sprintf("%.02f",bd2), substr(a[70],19,55),sep=",")
+ bd2_list <- c(unlist(strsplit(a[70],",")),"")#adding extra empty value at end
+ bd2_list[5]<-bd2
+ a[70]=paste(bd2_list,"",collapse=",")
+ #a[70]=paste(substr(a[70],1,13), sprintf("%.02f",bd2), substr(a[70],19,55),sep=",")
  
- # bd3_list <- unlist(strsplit(a[71],","))
- # bd3_list[5]<-bd3
- # a[71]=paste(bd3_list,collapse=",")
- a[71]=paste(substr(a[71],1,14), sprintf("%.02f",bd3), substr(a[71],19,55),sep=",")
+ bd3_list <- c(unlist(strsplit(a[71],",")),"")#adding extra empty value at end
+ bd3_list[5]<-bd3
+ a[71]=paste(bd3_list,"",collapse=",")
+ #a[71]=paste(substr(a[71],1,14), sprintf("%.02f",bd3), substr(a[71],19,55),sep=",")
  
- # bd4_list <- unlist(strsplit(a[72],","))
- # bd4_list[5]<-bd4
- # a[72]=paste(bd4_list,collapse=",")
- a[72]=paste(substr(a[72],1,14), sprintf("%.02f",bd4), substr(a[72],19,55),sep=",")
  
- # bd5_list <- unlist(strsplit(a[73],","))
- # bd5_list[5]<-bd5
- # a[73]=paste(bd5_list,collapse=",")
- a[73]=paste(substr(a[73],1,14), sprintf("%.02f",bd5), substr(a[73],19,55),sep=",")
+ bd4_list <-c(unlist(strsplit(a[72],",")),"")#adding extra empty value at end
+ bd4_list[5]<-bd4
+ a[72]=paste(bd4_list,"",collapse=",")
+ #a[72]=paste(substr(a[72],1,14), sprintf("%.02f",bd4), substr(a[72],19,55),sep=",")
+ 
+ bd5_list <- c(unlist(strsplit(a[73],",")),"")
+ bd5_list[5]<-bd5
+ a[73]=paste(bd5_list,"",collapse=",")
+ #a[73]=paste(substr(a[73],1,14), sprintf("%.02f",bd5), substr(a[73],19,55),sep=",")
   #####################################FC###########################################################################
  Num_s=5#soil layer
- fc=input_list[Ite,"fc"]
+ fc=round(input_list[Ite,"fc"],2)
  row_s=69
  for (i in 1:Num_s){
    row_t=row_s+(i-1)
@@ -214,7 +218,7 @@ for (Ite in 1:Nsims){
  }
  ##################################WP############################################################################
  Num_s=5#soil layer
- WP=input_list[Ite,"WP"]
+ WP=round(input_list[Ite,"WP"],2)
  row_s=69
  for (i in 1:Num_s){
    row_t=row_s+(i-1)
@@ -225,7 +229,7 @@ for (Ite in 1:Nsims){
  }
  ##################OC#######################################################################################
  Num_s=5#soil layer
- OC=input_list[Ite,"OC"]
+ OC=round(input_list[Ite,"OC"],2)
  row_s=69
  for (i in 1:Num_s){
    row_t=row_s+(i-1)
@@ -234,9 +238,31 @@ for (Ite in 1:Nsims){
    a[row_t]=paste(OC_list,collapse=",")
    
  }
+ ################################################################################################
+ # Num=16#Number of Applications
+ # app_tm=round(input_list[Ite,"app_tm"],0)
+ # row_0=82
+ # for (i in 1:Num){
+ #   row_t=row_0+(i-1)
+ #   app_tm_list <- unlist(strsplit(a[row_t],","))
+ #   app_tm_list[2]<-app_tm
+ #   a[row_t]=paste(app_tm_list,collapse=",")
+ #   
+ # }
+ # #################################################################################################
+ # Num=16#Number of Applications
+ # app_m=round(input_list[Ite,"app_tm"],0)
+ # row_0=82
+ # for (i in 1:Num){
+ #   row_t=row_0+(i-1)
+ #   app_m_list <- unlist(strsplit(a[row_t],","))
+ #   app_m_list[4]<-app_m
+ #   a[row_t]=paste(app_m_list,collapse=",")
+ #   
+ # }
  #####################################depth of the pesticide application ##################################################################
  Num=16#Number of Applications
- dep=input_list[Ite,"dep"]
+ dep=round(input_list[Ite,"dep"],2)
  row_0=82
  for (i in 1:Num){
    row_t=row_0+(i-1)
@@ -245,9 +271,10 @@ for (Ite in 1:Nsims){
    a[row_t]=paste(dep_list,collapse=",")
 
  }
- ##############application rate###################################################################
+ 
+  ##############application rate###################################################################
  Num=16#Number of Applications
- app_rate=input_list[Ite,"app_rate"]
+ app_rate=round(input_list[Ite,"app_rate"],2)
  row_0=82
  for (i in 1:Num){
    row_t=row_0+(i-1)
@@ -258,7 +285,7 @@ for (Ite in 1:Nsims){
  }
  ##############################application_eff##############################
  Num=16#Number of Applications
- app_eff=input_list[Ite,"app_eff"]
+ app_eff=round(input_list[Ite,"app_eff"],2)
  row_0=82
  for (i in 1:Num){
    row_t=row_0+(i-1)
@@ -268,19 +295,19 @@ for (Ite in 1:Nsims){
    
  }
  #################PLVKRT############################################################
- PLVKRT=input_list[Ite,"PLVKRT"]
- PLVKRT_list <- unlist(strsplit(a[101],","))
- PLVKRT_list[1]<-PLVKRT
- a[101]=paste(PLVKRT_list,collapse=",")
+ # PLVKRT=input_list[Ite,"PLVKRT"]
+ # PLVKRT_list <- unlist(strsplit(a[101],","))
+ # PLVKRT_list[1]<-PLVKRT
+ # a[101]=paste(PLVKRT_list,collapse=",")
  ####################PLDKRT############################################
- PLDKRT=input_list[Ite,"PLDKRT"]
- PLDKRT_list <- unlist(strsplit(a[101],","))
- PLDKRT_list[2]<-PLDKRT
- a[101]=paste(PLDKRT_list,collapse=",")
+ # PLDKRT=round(input_list[Ite,"PLDKRT"],2)
+ # PLDKRT_list <- unlist(strsplit(a[101],","))
+ # PLDKRT_list[2]<-PLDKRT
+ # a[101]=paste(PLDKRT_list,collapse=",")
  ##########################DWRATE##################################################################
  Numhz=5#Number of soil layer
- DWRATE=input_list[Ite,"DWRATE"]
- row_hz=133
+ DWRATE=round(input_list[Ite,"DWRATE"],2)
+ row_hz=131
  for (i in 1:Numhz){
    row_t=row_hz+(i-1)
    DWRATE_list <- unlist(strsplit(a[row_t],","))
@@ -290,7 +317,7 @@ for (Ite in 1:Nsims){
  ############################DSRATE###########################################################################
  Numhz=5#Number of soil layer
  #DSRATE=input_list[Ite,"DSRATE"]
- row_hz=133
+ row_hz=131
  for (i in 1:Numhz){
    row_t=row_hz+(i-1)
    DSRATE_list <- unlist(strsplit(a[row_t],","))

@@ -117,7 +117,7 @@ colnames(c) <- c("day","variable","aaa","value")
 options("scipen"=100, "digits"=4)
 g <- ggplot(c,aes(x=value*1000000))
 g <- g + geom_histogram()
-g <- g + facet_wrap(~variable)+scale_x_log10(limits=c(0.000001, 20))+
+g <- g + facet_wrap(~variable)+scale_x_log10(limits=c(0.000001, 150))+
   geom_vline(aes(xintercept=0.04, linetype=name),show.legend =FALSE, color="red", linetype="dashed", size=1) + 
   geom_vline(xintercept=0.1, color="blue" ,linetype="dashed", size=1) + 
   geom_vline(xintercept=1.1, color="black", linetype="dashed", size=1) + 
@@ -126,19 +126,86 @@ g <- g + facet_wrap(~variable)+scale_x_log10(limits=c(0.000001, 20))+
   theme(axis.title.y = element_text(colour="black", size=14),axis.text.y  = element_text(size=14,colour="black" ))+
   theme(legend.key.size = unit(0.5, "in"))+
   theme(legend.text=element_text(size=14))+guides(fill=guide_legend(nrow=2,byrow=TRUE)) 
-
+####histogramMC
 group.colors <- c(rep("red"), rep("blue"))
 g <- ggplot(c,aes(x=value*1000000,fill=variable ))
-g <- g + geom_histogram(aes(y = (..count..)/sum(..count..)),alpha=0.5,color="black", position="identity")+scale_x_log10(limits=c(0.000001, 100))
+g <- g + geom_histogram(aes(y = (..count..)/sum(..count..)),alpha=0.5,color="black", position="identity")+scale_x_log10(limits=c(0.00000001, 100))#
 g <- g + scale_fill_manual(values=group.colors)+theme_classic()+
   #geom_vline(aes(xintercept=0.04, linetype=name),show.legend =FALSE, color="red", linetype="dashed", size=1) + 
-  #geom_vline(xintercept=0.1, color="blue" ,linetype="dashed", size=1) + 
-  #geom_vline(xintercept=1.1, color="black", linetype="dashed", size=1) + 
+  geom_vline(xintercept=0.035, color="red" ,linetype="dashed", size=1) + 
+  geom_vline(xintercept=0.028, color="black", linetype="dashed", size=1) + 
   geom_vline(xintercept=0.17, color="black", size=1)+
+  geom_vline(xintercept=0.3, color="red", size=1)+
+  theme(axis.title.x = element_text(colour="black", size=14),axis.text.x  = element_text(size=14))+ 
+  theme(axis.title.y = element_text(colour="black", size=14),axis.text.y  = element_text(size=14,colour="black" ))+
+  theme(legend.key.size = unit(0.5, "in"))+
+  theme(legend.text=element_text(size=14))+guides(fill=guide_legend(nrow=2,byrow=TRUE))+labs(x = "log [Malathion daily average concentration (ug/l)]",y = "Relative frequency") 
+
+sim_dia<- read.csv("C:/Users/SSinnath/Research/CAVernalPools/vvwm/diazinon/sim_dia.csv", header=TRUE, 
+                            sep=",")
+
+group.colors <- c(rep("red"), rep("blue"))
+g <- ggplot(sim_dia,aes(x=sim_dia$con,fill=sim_dia$media ))
+g <- g + geom_histogram(aes(y = (..count..)/sum(..count..)),alpha=0.5,color="black", position="identity")+scale_x_log10(limits=c(0.00000001, 100))#
+g <- g + scale_fill_manual(values=group.colors)+theme_classic()+
+  #geom_vline(aes(xintercept=0.04, linetype=name),show.legend =FALSE, color="red", linetype="dashed", size=1) + 
+  geom_vline(xintercept=0.16, color="red" ,linetype="dashed", size=1) + 
+  geom_vline(xintercept=0.10, color="black", linetype="dashed", size=1) + 
+  geom_vline(xintercept=0.105, color="black", size=1)+
+  geom_vline(xintercept=0.105, color="black", size=1)+
   theme(axis.title.x = element_text(colour="black", size=14),axis.text.x  = element_text(size=14))+ 
   theme(axis.title.y = element_text(colour="black", size=14),axis.text.y  = element_text(size=14,colour="black" ))+
   theme(legend.key.size = unit(0.5, "in"))+
   theme(legend.text=element_text(size=14))+guides(fill=guide_legend(nrow=2,byrow=TRUE))+labs(x = "log [Diazinon daily average concentration (ug/l)]",y = "Relative frequency") 
+
+# Set colors for the CDF.
+sim_diaCDFcolor <- rgb(1,0,0)
+# bCDFcolor <- rgb(0,1,0)
+# cCDFcolor <- rgb(0,0,1)
+
+# Create a single chart with all 3 CDF plots.
+plot(ecdf(sim_dia$con), col=sim_diaCDFcolor, main=NA)
+plot(ecdf(b), col=bCDFcolor, add=T)
+plot(ecdf(c), col=cCDFcolor, add=T)
+
+# Add a legend to the chart.
+legend('right', c('a', 'b', 'c'), fill=c(aCDFcolor, bCDFcolor, cCDFcolor), border=NA)
+
+
+sim_chlor<- read.csv("C:/Users/SSinnath/Research/CAVernalPools/vvwm/chlorpyrifos/sim_chlor.csv", header=TRUE, 
+                   sep=",")
+
+group.colors <- c(rep("red"), rep("blue"))
+g <- ggplot(sim_chlor,aes(x=sim_chlor$con,fill=sim_chlor$media ))
+g <- g + geom_histogram(aes(y = (..count..)/sum(..count..)),alpha=0.5,color="black", position="identity")+scale_x_log10(limits=c(0.00000001, 100))#
+g <- g + scale_fill_manual(values=group.colors)+theme_classic()+
+  geom_vline(xintercept=0.04, color="red" ,linetype="dashed", size=1) + 
+  geom_vline(xintercept=0.015, color="black", linetype="dashed", size=1) + 
+  geom_vline(xintercept=0.025, color="black", size=1)+
+  geom_vline(xintercept=0.05, color="red", size=1)+
+  theme(axis.title.x = element_text(colour="black", size=14),axis.text.x  = element_text(size=14))+ 
+  theme(axis.title.y = element_text(colour="black", size=14),axis.text.y  = element_text(size=14,colour="black" ))+
+  theme(legend.key.size = unit(0.5, "in"))+
+  theme(legend.text=element_text(size=14))+guides(fill=guide_legend(nrow=2,byrow=TRUE))+labs(x = "log [Chlorpyrifos daily average concentration (ug/l)]",y = "Relative frequency") 
+
+
+sim_mal<- read.csv("C:/Users/SSinnath/Research/CAVernalPools/vvwm/Malathion/sim_mal.csv", header=TRUE, 
+                     sep=",")
+
+group.colors <- c(rep("red"), rep("blue"))
+g <- ggplot(sim_mal,aes(x=sim_mal$con,fill=sim_mal$media ))
+g <- g + geom_histogram(aes(y = (..count..)/sum(..count..)),alpha=0.5,color="black", position="identity")+scale_x_log10(limits=c(0.00000001, 100))#
+g <- g + scale_fill_manual(values=group.colors)+theme_classic()+
+  geom_vline(xintercept=0.035, color="red" ,linetype="dashed", size=1) + 
+  geom_vline(xintercept=0.028, color="black", linetype="dashed", size=1) + 
+  geom_vline(xintercept=0.17, color="black", size=1)+
+  geom_vline(xintercept=0.3, color="red", size=1)+
+  theme(axis.title.x = element_text(colour="black", size=14),axis.text.x  = element_text(size=14))+ 
+  theme(axis.title.y = element_text(colour="black", size=14),axis.text.y  = element_text(size=14,colour="black" ))+
+  theme(legend.key.size = unit(0.5, "in"))+
+  theme(legend.text=element_text(size=14))+guides(fill=guide_legend(nrow=2,byrow=TRUE))+labs(x = "log [Malathion daily average concentration (ug/l)]",y = "Relative frequency") 
+
+
 
 sum(c$value*1000000>0.17)
 dim(c)
@@ -234,3 +301,5 @@ pcc_plot<- read.csv("C:/git/sinnathamby_pwc/figures/pcc_plot.csv", header=TRUE,
 attach(pcc_plot)
 ggplot(pcc_plot, aes(x=Parameter, y=PCC,fill=Media))+geom_bar(colour="black",stat = "identity")+
   facet_wrap(~ Media,ncol=4)+theme_bw()+ theme(legend.position="none")+ coord_flip()
+##############################################################################
+#################################################################################

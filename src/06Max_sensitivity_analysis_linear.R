@@ -4,9 +4,10 @@
 # colMax(pwch2output)
 
 przmh2output <- (outputdf[,4,1:Nsims])
+head (przmh2output)
 przmmax_h20<-apply(przmh2output, 2, function(x) max(x, na.rm = TRUE))
 pwch2output <- (pwcoutdf[,2,1:Nsims]*1000000)#in ug/ml
-
+pwcpeak<- (pwcoutdf[,4,1:Nsims]*1000000)#in ug/ml
 
 
 #colnames(pwcoutdf) 
@@ -18,7 +19,8 @@ max_h20<-apply(pwch2output, 2, function(x) max(x, na.rm = TRUE))
 #write.csv(pwch2output, file = paste(pwcdir, "io/pwch2output.csv", sep = ""))
 #Calculate PCC in H2o
 #plot(pwch2output)
-
+max_peak<-apply(pwcpeak, 2, function(x) max(x, na.rm = TRUE))
+#plot(max_h20)
 #extract benthic concentration
 pwcbenutput <- (pwcoutdf[,3,1:Nsims]*1000000)
 #pwcbenutput <- (pwcoutdf[,3,1:Nsims]*1000000)#1depth, 2Ave.Conc.H20, 3Ave.Conc.benth, 4Peak.Conc.H20
@@ -33,6 +35,7 @@ typeof(max_sed)
 
 inputdf <- cbind(inputdata, przmmax_h20)
 inputdf <- cbind(inputdata, max_h20)
+#inputdf <- cbind(inputdata, max_peak)
 #View(inputdf)
 inputdf <- cbind(inputdf, max_ben)
 inputdf <- cbind(inputdf, output)
@@ -40,24 +43,34 @@ inputdf <- cbind(inputdf, max_sedd)
 write.csv(inputdf, file = paste(pwcdir, "io/inputdata_przm_vvwm_max.csv", sep = ""))
 
 library(ppcor)
-
-# max_h2opcc<- 
+dim(inputdf)
+# pearson correlation
 dim(inputdata)
-for(i in 1:54){
+for(i in 1:50){
   var <- colnames(inputdata)[i]
-  pcc_value <- pcor(cbind(inputdata[,i],max_h20), method="pearson")$estimate[1,2]
-  print(paste(var, pcc_value, min(inputdata[,i]), max(inputdata[,i])))
+  pcor_value <- pcor(cbind(inputdata[,i],max_h20), method="pearson")$estimate[1,2]
+  print(paste(var, pcor_value, min(inputdata[,i]), max(inputdata[,i])))
 }
+#pcc
 
-pcor(inputdf,method="pearson")
+#cor_value<-pcor(inputdf[,-c(52:54)],method="pearson")
+
 #, rank = TRUE,nboot = 0, conf = 0.95)
 przmmax_h2opcc<- pcc(inputdata, przmmax_h20, rank = F)
+max_peakpcc<- pcc(inputdata, max_peak, rank = F)
 max_h2opcc<- pcc(inputdata, max_h20, rank = F)
 max_benpcc<- pcc(inputdata, max_ben, rank = F)
 max_sedpcc<- pcc(inputdata, max_sedd, rank = F)
-plot(przmmax_h2opcc, ylim = c(-1,1))
-plot(max_h2opcc, ylim = c(-1,1))
+par(mfrow=c(2,2))
+plot(przmmax_h2opcc, ylim = c(-1,1),main="PRZM")
+plot(max_h2opcc, ylim = c(-1,1),main="H20")
 
-plot(max_benpcc, ylim = c(-1,1))
-plot(max_sedpcc, ylim = c(-1,1))
+plot(max_benpcc, ylim = c(-1,1),main="Ben")
+plot(max_sedpcc, ylim = c(-1,1),main="SED")
+
+plot(przmmax_h2opcc,main="PRZM")
+plot(max_h2opcc,main="H20")
+
+plot(max_benpcc,main="Ben")
+plot(max_sedpcc,main="SED")
 

@@ -81,8 +81,7 @@ vvwm_binary<- "VVWM.exe"
 vvwmdir_executable <- paste(vvwmdir_exe, vvwm_binary, sep="")
 #number of simulations 
 
-Nsims <- 500
-
+Nsims <- 5000
 
 #weather file
 #can be .dvf or .wea
@@ -99,7 +98,7 @@ simend <- "12/31/2014"
 #source(paste(pwcdir,"src/01a_parameterization.R",sep = ""))
 source(paste(pwcdir,"src/01b_lhs_parameterization.R",sep = ""))
 #write_update_run_vvwm
-source(paste(pwcdir,"src/01write_update_run_pwc.R",sep = ""))
+source(paste(pwcdir,"src/01write_update_run_pwc_chalfw2.R",sep = ""))
 
 #create input dataframe
 #source(paste(pwcdir,"src/03write_input_dataframe.R",sep = ""))
