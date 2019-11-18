@@ -31,8 +31,8 @@ git clone https://github.com/SumathyS/sinnathamby_pwc.git
 
 ## Authors
 
-*  [Sinnathamby Sumathy](https://github.com/SumathyS/SumathyS.github.io)
-*  [Purucker Tom](https://github.com/puruckertom)
+*  [Sinnathamby Sumathy](https://sumathys.github.io/)
+*  [Purucker Tom](https://tom-purucker.appspot.com/)
 
 
 ## Acknowledgments
