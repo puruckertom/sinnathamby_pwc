@@ -28,7 +28,6 @@ git clone https://github.com/SumathyS/sinnathamby_pwc.git
 * [Peer Reviewed Article](https://www.sciencedirect.com/science/article/pii/S0269749119343088) - Environmental Pollution
 * [Presentation](https://www.researchgate.net/publication/337032938_Sensitivity_analysis_for_pesticide_transport_in_a_vernal_pool_watershed_using_the_Pesticide_Water_Calculator) - iEMSs 2018
 
-
 ## Authors
 
 *  [Sinnathamby Sumathy](https://sumathys.github.io/)
